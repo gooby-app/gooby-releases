@@ -1,0 +1,40 @@
+name: Idea or feature request
+description: Something Gooby could do, or do better.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Some ideas are already planned; see "Coming next" in the [README](https://github.com/gooby-app/releases#coming-next). A thumbs-up reaction on an existing issue helps us see what matters most.
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like Gooby to do?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it help?
+      description: What you're trying to get done, and how you do it today.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of Gooby?
+      options:
+        - Dictating
+        - AI formatting
+        - Voice commands ("Gooby, …")
+        - Library
+        - Models and languages
+        - Look and feel
+        - Something new
+  - type: dropdown
+    id: os
+    attributes:
+      label: Which systems do you use Gooby on?
+      multiple: true
+      options:
+        - Windows
+        - macOS
+        - Linux

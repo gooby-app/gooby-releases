@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem
+    url: https://github.com/gooby-app/releases/security/advisories/new
+    about: Report it privately, please don't open a public issue.
+  - name: Troubleshooting
+    url: https://github.com/gooby-app/releases/blob/main/TROUBLESHOOTING.md
+    about: Known issues and fixes; your problem may already be covered.
+  - name: Frequently asked questions
+    url: https://github.com/gooby-app/releases#faq
+    about: Offline use, languages, graphics cards, where your recordings are.

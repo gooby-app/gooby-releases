@@ -1,0 +1,110 @@
+name: Bug report
+description: Something in Gooby doesn't work the way it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time! Please don't include anything private from your dictations.
+        Security problems go through [private reporting](https://github.com/gooby-app/releases/security/advisories/new) instead.
+        Your problem may already be in [TROUBLESHOOTING.md](https://github.com/gooby-app/releases/blob/main/TROUBLESHOOTING.md) or in Gooby under **Settings → Help**.
+  - type: checkboxes
+    id: searched
+    attributes:
+      label: Before you start
+      options:
+        - label: I searched the [existing issues](https://github.com/gooby-app/releases/issues?q=is%3Aissue) and this isn't one of them.
+          required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Gooby
+        2. Press the shortcut in …
+        3. …
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of Gooby?
+      options:
+        - Dictating (shortcut, recording, typing into apps)
+        - Overlay
+        - AI formatting
+        - Voice commands ("Gooby, …")
+        - Library
+        - Setup or models
+        - Settings or themes
+        - Installing or updating
+        - Something else
+  - type: input
+    id: version
+    attributes:
+      label: Gooby version
+      description: Settings → About shows it.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS (Apple Silicon)
+        - macOS (Intel)
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version and desktop
+      placeholder: "Windows 11 23H2 / macOS 15.1 / Ubuntu 24.04, GNOME"
+  - type: dropdown
+    id: display
+    attributes:
+      label: "Linux only: X11 or Wayland?"
+      description: '`echo $XDG_SESSION_TYPE` in a terminal tells you.'
+      options:
+        - Not on Linux
+        - X11
+        - Wayland
+        - Not sure
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install Gooby?
+      options:
+        - Windows installer (.exe)
+        - macOS disk image (.dmg)
+        - Linux one-command install (install-linux.sh)
+        - Linux .deb
+        - Linux AppImage
+        - Other
+  - type: input
+    id: model
+    attributes:
+      label: Speech model
+      description: Shown at the bottom left of the Gooby window.
+      placeholder: "Parakeet TDT 0.6B v3"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log
+      description: |
+        In Gooby, **Settings → About → Log directory** opens the log folder. Paste the end of the newest log here, or drag the file in.
+        Logs can include the text of your recent dictations, so please read it and remove anything private before you paste.
+      render: text
+  - type: textarea
+    id: errors
+    attributes:
+      label: Error messages or screenshots
+      description: Anything Gooby showed, and screenshots if they help.
