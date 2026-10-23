@@ -1,68 +1,456 @@
 # Changelog
 
-What changed in each version of Gooby. It's in **pre-alpha** (0.0.x) until
-the first alpha, 0.1.0, for friends and family.
+What changed in each version of Gooby. 0.0.7 is the first alpha; earlier
+versions were pre-alpha, for the developers only.
 
 ## Coming in the next version
 
+## 0.0.7 - 2026-10-23
+
+Phase 1, the streamlined core: talk to Gooby, notes to self, editing by
+voice, "Hey Gooby", formatting that fits the app, and a setup that takes one
+click. And the start of phase 2: summaries for every recording.
+
 ### Added
-- When another app already holds the default dictation shortcut, Gooby
-  picks a free one (Ctrl+Alt+G, then Ctrl+Alt+Shift+Space) and tells you,
-  instead of a shortcut that does nothing. A shortcut you chose is never
-  changed.
+- **License and privacy policy**: Gooby now comes with an end-user license
+  (free for any purpose during the alpha and beta) and a privacy policy that
+  says who makes Gooby, how to reach us and what your rights are. Settings →
+  About links to both.
+- **Gooby's moods in the main window**: while you're not dictating, Gooby
+  waves or perks up once in a while, dozes off after two minutes without
+  input and perks up when you're back. The Library shows him thinking beside
+  a summary being written and sad beside one that failed, and in setup he
+  swims while the models download. He still holds still while Gooby is in
+  the background, and with reduced motion on.
+- **Performance tab**: Settings → Performance shows your computer's memory
+  and graphics and gathers the speed settings in one place. The speed test
+  listens for a phrase and stops by itself when you stop talking. It then
+  starts from unloaded models, so the time to load them shows, and times
+  transcribing, AI formatting and the quick rules side by side (the AI too
+  when formatting is off, if one is set up on this computer), the checks
+  before typing, saving and the background tagging. A chart shows where the
+  time went, in plain words ("from when you stop talking to your text
+  appearing"), with how busy the computer got and which device ran it.
+  "Compare with the other options" tries Auto, the CPU and each graphics
+  chip Auto didn't pick (integrated graphics too), on the same phrase and
+  the same settings, without changing them. The recommendation picks the
+  fastest, and when waits are close, the one that keeps the computer less
+  busy and uses less memory. It keeps Auto when Auto already lands on the
+  best device, and offers a button only when it would change a setting. With
+  AI formatting off it suggests turning it on, or setting it up. On a
+  computer without a graphics card there's nothing to compare, and the GPU
+  options stay hidden. Nothing is saved to your Library, typed or copied.
+- **GPU or CPU for the AI formatter**: choose where the built-in formatter
+  runs its model (Automatic, CPU or GPU) when the computer has a graphics
+  card.
+- **Uninstall on a Mac**: Settings → Storage → Move Gooby to Trash removes
+  Gooby, and asks whether your recordings, settings and models go too.
+- **Gooby moves itself to Applications**: opened from the disk image or
+  Downloads on a Mac, where it can't update itself, Gooby offers to move
+  there and opens again.
+- **Always ready on laptops without a graphics card**: Gooby loads its
+  speech model and AI formatter when it starts, one after the other, and
+  keeps them loaded, so the first dictation of the day is as quick as any
+  other. While they load, the window and the tray say "Getting ready…";
+  a dictation made meanwhile is typed straight away without AI formatting,
+  and the overlay says why.
+- **Gooby has feelings**: he swims like a jellyfish (harder while you talk),
+  perks up when the mic is ready, grows a thought bubble while he works,
+  sparkles when your words are typed, waves when a command worked, looks
+  puzzled when he didn't hear anything and sheds a tear when typing failed.
+  He looks around now and then, and sleeps while Gooby is in the
+  background, which keeps it as light as before.
+- **Developer mode** (Settings → General → Advanced): a Logs button next to
+  the version opens this session's log, from launch: the GPU found, the model
+  loaded, what was heard and formatted, and where it was typed. Copy shares
+  it. Turning it on after something went wrong still shows what happened.
+- **One-click setup**: the first screen asks which language you'll dictate
+  in, shows the speech model and AI formatter that suit your computer and
+  the microphone Gooby will use, and downloads everything with one click.
+  Dictation works as soon as speech is ready; the formatter finishes in the
+  background. Bigger formatters stay in Settings → AI formatting.
+- Setup suggests **Ollama** for AI formatting, with "Keep it all inside
+  Gooby" (the built-in formatter, with a choice of models that fit your
+  computer) and "No AI formatting for now" as the alternatives, and a pros &
+  cons panel. Without Ollama, it links to the download and checks again;
+  with it, Gooby downloads the right model into Ollama for you.
+- Setup's optional **About you**: your name and email become snippets
+  ("Gooby, insert my email"), and your country turns on its common words.
 - **"Gooby, …" voice commands**: start a dictation with "Gooby," to change
-  things without opening Settings: "Gooby, formatting off", "switch to
-  French", "switch to the Acme project", "no project", "type that", "open the
-  Library". "…Gooby, cancel" at the end throws a dictation away. Anything
-  Gooby doesn't know is typed as you said it. The overlay says what changed,
-  and Help lists every command.
+  things without opening Settings: "formatting off", "sounds off", "stop
+  typing" (dictations are kept as notes until "start typing"), "use the
+  email style" ("the default style" goes back), "switch to French", "switch
+  to the Acme project", "no project", "type that", "open the Library" and
+  "what can I say?". "…Gooby, cancel" at the end throws a dictation away.
+  Anything Gooby doesn't know is typed as you said it. The overlay says what
+  changed (a system notification when the overlay is off), and Help lists
+  every command. Commands also work when the speech model hears "Google"
+  for "Gooby", which Parakeet often does.
 - **Notes to self**: "Gooby, note: …" or "Note to self …" keeps a dictation
-  in the Library without typing it anywhere, and so does dictating while
-  Gooby's window is in front with no text box selected. Notes have their own
-  place in the Library and are never removed by cleanup.
+  in the Library without typing it, and so does dictating while Gooby's
+  window is in front with no text box selected. Notes have their own place
+  in the Library and are never removed by cleanup.
+- **Summaries in the Library**: after each recording, while Gooby is idle,
+  your AI formatter writes a title, a short summary and the action items,
+  and suggests tags and a project, which you add with one click. A title you
+  typed and your own tags and project are never changed. "Summarize again"
+  on a recording redoes it, and AI formatting → Summaries can summarize your
+  older recordings. On when the formatter runs on your computer; with a cloud
+  provider only if you turn on "Also with cloud providers". A dictation never
+  waits for a summary. Search covers summaries too.
+- **Keep it as a note when there's nowhere to type** (General → Advanced
+  settings, off by default): a dictation made while a button, a list or the
+  desktop has focus is kept as a note instead of typed. Only when the system
+  is sure; otherwise Gooby types as usual. Linux and Windows.
+- **Edit by voice**: select text in any app, press the dictation shortcut
+  and say "Gooby, make this shorter", "fix the grammar", "translate this
+  into French" or "format this". Gooby rewrites the selection with your AI
+  formatter and pastes it over (Ctrl+Z or Cmd+Z undoes it).
+- **"Hey Gooby"** (Settings → General, off by default): say "Hey Gooby" and
+  what to type, or a command, without pressing the shortcut; Gooby stops two
+  seconds after you stop talking, whatever the model or the voice activity
+  detection setting. A small model on your computer listens and holds only the last
+  second and a half of audio, in memory. Setup offers it (unticked), the tray
+  menu turns it on and off, and the tray icon shows a blue dot while it
+  listens.
+- **Snippets** (Settings → Words): save text you type often, then say
+  "Gooby, insert my signature" to type it exactly.
+- **Templates by voice**: say a formatting prompt's name after "Gooby," to
+  use it for one dictation: "Gooby, SOAP note: patient reports…", even when
+  AI formatting is off.
+- **Formatting that fits the app**: AI formatting knows where you're typing.
+  Emails get paragraphs, chats stay casual, prompts for AI assistants keep
+  every detail, and in a terminal or code editor your words are typed as
+  said. Each recording shows the app it went into ("Typed into Slack"). Turn
+  it off in AI formatting → Format for the app. Not on Wayland, where the
+  desktop doesn't say which app is in front.
+- Short dictations (a few words) are tidied up without waiting for the AI:
+  "um" and "uh" go, "new line" and "question mark" become the real thing,
+  and the first letter is a capital.
+- **Settings → Words**: Names & words, Snippets, Projects, and **Common
+  terms**: packs of acronyms (on by default) and of each country's
+  institutions, places, money and slang (US, UK, Canada, Australia, New
+  Zealand, Ireland, India, South Africa), plus Hindi and Tagalog words that
+  speech models often miss. Turn packs or single terms on and off, search
+  them (typos are fine) and remove any term; ordinary words are never
+  changed. "Gooby" is in Names & words from the start, so voice commands are
+  heard.
+- **Words for each project**: names and terms (a book's characters, a
+  client's products) used while that project is active. With AI formatting
+  on, "open quote", "close quote" and "em dash" become punctuation.
+- **Gooby in the overlay**: it walks while you talk, bobs while transcribing,
+  formatting or editing (counting the seconds when a step is slow, so a slow
+  model doesn't look stuck), and hops with "Typed" once your words are in.
+  The hop is skipped when the system asks for less motion. A dictation
+  started with "Hey Gooby" says "Pause when you're done".
+- When another app already holds the default dictation shortcut, Gooby picks
+  a free one (Ctrl+Alt+G, then Ctrl+Alt+Shift+Space) and tells you. A
+  shortcut you chose is never changed.
 - When Gooby can't type into an app, the text is copied to the clipboard and
   the overlay says so.
-- **One-click setup**: first run shows the speech model and AI formatter that
-  suit your computer (the formatter up to the 2.4 GB tier; bigger ones stay
-  in AI formatting) and which microphone Gooby will use. One click downloads
-  both, and dictation works as soon as speech is ready.
 - When the system's default input can't hear a voice (S/PDIF, monitor,
   loopback), Gooby switches to a real microphone and tells you. It never
   overrides a microphone you chose, including "Default".
-- **Settings → Themes**: light or dark, six two-color palettes (1-bit, Game
-  Boy, Amber, Blueprint, Paper, Sakura), and text size.
-- **Text size** (Small to Largest, or Ctrl/Cmd +, −, 0) scales the whole
-  window and the overlay, and follows the system text size on Windows and
+- **Settings → Themes**: light, dark or follow the system, six two-color
+  palettes (1-bit, Game Boy, Amber, Blueprint, Paper, Sakura), and **text
+  size** (Small to Largest, or Ctrl/Cmd +, −, 0), which scales the whole
+  window and the overlay and follows the system text size on Windows and
   GNOME.
-- About → Open-source licenses lists every third-party library in the app
-  with its license text: the Rust crates, npm packages, ONNX Runtime and
-  what's compiled into the built-in formatter.
+- **Gooby's own title bar on Windows**, in the pixel font and your theme's
+  colors. Drag it to move the window, double-click to maximize; closing
+  still hides Gooby to the tray.
+- About → Licenses lists every third-party library, engine, model and font
+  in the app with its license text.
+- Settings → Debug → Try a voice command runs a "Gooby, …" command as if
+  you'd said it, for trying commands without a microphone.
+- **Settings → Storage** shows how much space Gooby takes and frees it:
+  remove the audio of old recordings (their text stays), remove models you
+  don't use, clear logs and caches, open the data folder, or remove all of
+  Gooby's data, API keys included, in one step. On Windows, uninstalling
+  with "Delete the application data" also removes the API keys.
+- **Gooby on Discord**: Settings → About links to Gooby's Discord server,
+  for questions, ideas and news.
+- **Overlay looks**: Settings → Themes → Overlay look offers three new
+  looks beside Classic, each with a live preview: Island (a dark pill that
+  floats over any app), Soft (a light capsule with a soft shadow) and Pixel
+  (the 1-bit look with pixel corners). The words and Gooby stay the same;
+  the new looks also show the recording time and count down the save pill.
+  Gooby sits centered in every look, and every look takes your palette's
+  colors. Classic stays the default.
 
 ### Changed
-- Installers, updates, release notes and bug reports live in the public
-  [gooby-app/releases](https://github.com/gooby-app/releases) repo; the
-  source code is private. About → "Gooby on GitHub", the privacy policy and
-  help links open it.
+- **Gooby tidies up after itself**: half-finished downloads go after a day
+  instead of a week, and the installer a Windows update leaves behind and a
+  speed test's leftover audio go too. Switching to another speech or AI
+  formatter model asks whether to delete the old one, so it no longer sits
+  on your disk unnoticed.
+- **macOS 13.3 or later**: Gooby needs macOS Ventura 13.3 or later on a Mac
+  with Apple Silicon. It said macOS 11, but couldn't start before 13.3; an
+  older Mac now says which version it needs instead.
+- **The Experimental features switch is gone**: its four settings (keyboard
+  implementation, acceleration, lazy stream close, voice detector) are under
+  an "Experimental" fold in General → Advanced. Without a graphics card the
+  acceleration choice is hidden.
+- **Clearer wording for the note setting**: "Keep it as a note when there's
+  nowhere to type" now reads "Don't type when there's nowhere to type; keep
+  a note instead", and its hint says every dictation is saved to your
+  Library either way.
+- **macOS needs Apple Silicon**: Gooby runs on Macs with an M1 or newer.
+  There is no Intel Mac download: the speech engine it relies on is no
+  longer made for Intel Macs.
+- **The Windows installer looks like Gooby**: its welcome and finish pages
+  show Gooby and the wordmark instead of the installer kit's stock picture,
+  and each page says "Gooby" and the version at the bottom.
+- **Readable in every palette**: secondary text, hints and lines take more
+  of the palette's ink in Game Boy, Amber, Blueprint, Paper and Sakura, in
+  the window and the overlay, so they no longer fade into the background.
+  In the overlay, Island's glow is a soft light behind Gooby instead of a
+  blur on his pixels, Pixel's checkered tile is lighter, Classic's
+  "Transcribing…" no longer gets cut off and its small titles and menu
+  buttons are bigger, and Gooby no longer flashes green before taking a
+  palette's colors.
+- **The overlay stays centered**: at the bottom it centers on the space
+  apps use, so a dock or taskbar on the side no longer pushes it off the
+  middle (at the top on macOS and Linux it lines up with the notch and the
+  clock), and it moves with the taskbar, dock or screen resolution if they
+  change while it's showing.
+- **Cleaner text without the AI formatter**: short replies, and any
+  dictation the AI formatter doesn't handle (still loading, or no formatter
+  at all), now lose "okay so", "you know", "basically", stutters and
+  comma-set-off "like"; follow spoken "comma", "period", "colon" and "open
+  quote … close quote"; keep only the final version of "at ten, actually
+  make that eleven" or "scratch that"; write "twenty five dollars" as $25
+  and "nine thirty" as 9:30; and turn "first … second … third …" into a
+  numbered list. It still takes no time and no memory, and now works with
+  AI formatting off too (Settings → AI formatting → Tidy up without AI
+  turns it off). On computers with under 8 GB of memory, setup suggests
+  these rules instead of an AI model.
+- **Gooby in your colors**: with any palette but black and white, Gooby
+  himself is drawn in the palette's colors, in the window and the overlay.
+- **Right-click menus and confirmations match your theme**: they're drawn
+  in Gooby's colors and pixel font instead of the system's, and work from
+  the keyboard.
+- **The Library is one tree**: projects, tags and views share one column
+  with their recordings, which open right under the folder you click (click
+  it again to fold it), so what you said gets the rest of the window.
+- **The Library puts what you said first**: a recording opens to its
+  transcript, in the widest column, with a small toolbar above it (play,
+  copy, edit, add a note, star). Rename, tag and file recordings from the
+  list: right-click one, double-click its title, press F2, or drag it onto
+  a project or tag. The notes box shows only when a recording has a note.
+- **Faster AI formatting without a graphics card**: setup picks Qwen 2.5
+  1.5B there (about 1 s per dictation on a 4-core laptop, with 1.5 GB of
+  memory) instead of Gemma 3 4B (about 2.6 s and 3.3 GB); a graphics card
+  built into the processor no longer counts as one. If your formatter is
+  slow on your computer, AI formatting offers the one that fits.
+- **Better AI formatting with small models**: dictated questions and
+  prompts for an AI are written down instead of answered, self-corrections
+  ("no wait", "scratch that", "I mean") are resolved more often, and a
+  reply that isn't your dictation is never typed. Switching between apps no
+  longer slows the next dictation down, and the AI formatter uses far less
+  memory.
+- **The first dictation is ready sooner**: Gooby loads the speech model when
+  it starts instead of on the first dictation (not with "Unload model:
+  Immediately").
+- The app is translated again into all 25 of its other languages: newer
+  screens (setup, the Library, Themes, voice commands, Help) were English-only,
+  and some older settings still used their old names. These are machine
+  translations; corrections from native speakers are welcome.
+- Gooby uses about 100 MB less memory while it waits in the tray: a minute
+  after you close its window, the window is unloaded, and opening it again
+  takes a moment longer.
+- On Linux (X11), dictated text appears about six times faster: a sentence
+  in a fraction of a second, a long paragraph in under a second instead of
+  five.
+- Setup recommends speech models by accuracy first, then the smaller
+  download, then languages, and says when a model for English only would be
+  faster. English users get Parakeet.
+- New installs follow your system's light or dark mode. A theme you picked
+  is kept.
 - Everything is bigger by default: 1.25× the old size, about the body text
   of native apps. "Small" keeps the old look.
-- Confirmation dialogs name their action ("Empty Recently Deleted",
-  "Cancel") instead of Yes / No.
-- The built-in formatter's `llama-server` no longer embeds llama.cpp's web
-  chat page, which Gooby never opened (3 MB smaller).
+- **Type what I say** (Settings → General) turns typing off so dictations
+  are only kept in your Library, as notes. It replaces the "None" paste
+  method; if you used that, the switch is already off.
+- The separate "dictate with AI formatting" shortcut (Ctrl+Shift+Space) is
+  gone: the dictation shortcut formats whenever formatting is on, and
+  "Gooby, format this" formats selected text.
+- Projects moved to Settings → Words. Input channel, the output device for
+  Gooby's sounds and their volume moved to General → Advanced settings.
+- Clearer names in Settings: "Dictation shortcut" (was "Transcribe
+  shortcut"), "Sounds" (was "Audio feedback"), "Interface language", "Speech
+  models", and Library cleanup under Library instead of History. Model
+  descriptions are plain English.
+- Confirmation dialogs and the update question name their action ("Empty
+  Recently Deleted", "Turn on updates", "Not now") instead of Yes / No.
+- Installers, updates, release notes and bug reports live in the public
+  [gooby-app/releases](https://github.com/gooby-app/releases) repo; About →
+  "Gooby on GitHub", the privacy policy and help links open it. About and
+  Help call Gooby source-available, not open source.
+- The built-in formatter no longer includes llama.cpp's web chat page,
+  which Gooby never opened (3 MB smaller).
+- Recordings take about a tenth of the space: the Library keeps their audio
+  as Opus (about 10 MB per hour of speech instead of 115 MB), and recordings
+  from earlier versions are converted in the background, a minute after
+  Gooby starts and never while you dictate. "Also save audio" writes an
+  `.opus` beside each saved dictation. Playback, word highlighting and
+  re-transcribing work as before.
+- Speech models download into Gooby's own folder instead of the Hugging
+  Face cache other apps share, so removing Gooby's data removes them too;
+  models Gooby downloaded there before move over once, at no cost. After you
+  switch models, Gooby offers to remove the old one and says how much space
+  that frees.
+- Lighter when idle: the speech model stays loaded so dictation always
+  starts at once (installs on the old 5-minute default move over), the AI
+  formatter (built-in or Ollama) frees its memory after 5 idle minutes
+  instead of 30 (the built-in one only with a graphics card), and "Hey Gooby" pauses while the screen is locked (Linux,
+  Windows) and skips its detector in silence, using about half the CPU in a
+  quiet room.
+- The Linux AppImage is a third smaller (190 MB to 127 MB): it carries only
+  the GStreamer plugins Gooby needs to play recordings, not every video codec
+  and voice on the build machine. An `.rpm` built from source is compressed
+  (110 MB to 26 MB).
+- Gooby open behind other apps uses next to no CPU: the mascot in the main
+  window rests while the window isn't in front (it kept redrawing five times
+  a second, 20 times the CPU of a Gooby closed to the tray).
 
 ### Fixed
-- Help no longer says Gooby's code is public.
-- The Library's dropdowns (sort order, project) take the theme's colors
-  instead of the system's gray box, on every platform.
+- **AI formatting stays quick right after a summary**: when you dictated again while Gooby was summarizing the last recording, the built-in formatter had to reread its instructions, adding a fraction of a second on a GPU. It now rereads them while you're still talking.
+- **Your Library is backed up before an update changes it**: Gooby copies
+  its database first, so a failed update can't lose your recordings, and an
+  older Gooby opens a Library a newer one has used instead of failing to
+  start.
+- **Crashes show in the log**: when part of Gooby crashes, the log file
+  says where, so a bug report's log shows it (never what you said).
+- **A new install opens its window**: Gooby starts in the tray by default,
+  so the first launch after installing showed only a tray icon and never
+  first-run setup. It now opens until setup is done, and **Start hidden**
+  applies only when Gooby starts at login: opened from the app menu, it
+  always shows its window (on a Mac, the setting still covers every launch).
+- **Uninstalling removes everything when you ask**: the Windows uninstaller's
+  choice now says what it deletes (recordings, settings and models) and also
+  clears Gooby from Task Manager's startup list; the Linux install script
+  asks whether to keep your data, removes the start-at-login entry, and
+  `--purge` removes everything; on a Mac, "Remove all Gooby data" also
+  clears what macOS keeps for Gooby and its permissions.
+- **Every kind of install gets updates**: a release that left out one kind
+  of installer from its update list (or offered a `.deb` install the
+  AppImage) now can't be published.
+- **Start at login on Linux** works when Gooby's path has a space in it, and
+  with the install script on systems without FUSE; an uninstalled Gooby no
+  longer leaves a broken entry behind.
+- **A `.deb` update that needs your password** says how to install it by
+  hand if the password prompt is cancelled.
+- **AI formatting:** Ollama set up in first-run setup is listed as Ollama, not
+  "Custom", and with the built-in formatter and no model yet, the hint no
+  longer says "turn on" under a switch that's already on.
+- **Menus:** a dropdown near the bottom of the window opens upward instead of
+  being cut off, and Home, End and the arrow keys move through its options.
+- **Translations:** 25 strings reworded in English (the speech model and
+  shortcut settings, Sounds, Library, "Formatting...", and others) are now
+  updated in all 25 languages too.
+- **Tray menu:** Settings opens Settings (it opened the Library), Check for
+  Updates opens About to show the result, and the check marks for "Hey
+  Gooby" and the speech model stay right after a click that changes nothing.
+  Ctrl+Q (Cmd+Q on a Mac) in Gooby's window quits, as the menu says.
+- **Recently Deleted**: the Delete key deletes the selected recordings
+  forever, after asking; it did nothing before. Deleting forever from the
+  menu or the reading pane asks first too.
+- **Pasting into slower apps:** a dictation into apps that take a moment to
+  paste, like Notepad++, no longer pastes nothing or your old clipboard.
+  Gooby now waits until the app has pasted before putting your clipboard back
+  (Windows and macOS; on Linux it waits longer). The switch is in Settings →
+  General → Advanced → Output.
+- **Library:** a recording's player shows its length right away, not 0:00
+  until you press play.
+- **The save pill's menu** shows its buttons (Copy text, Save as..., your
+  projects) side by side again; they were stacked and cut off.
+- **The overlay fades in and out** again instead of popping up and
+  vanishing at once.
+- **Linux install:** on Ubuntu 22.04, Debian 12 and other systems too old for
+  the AppImage, the one-command install now says so and points to the `.deb`,
+  instead of installing a Gooby that won't start.
+- **Gooby** no longer stands on a black line. Every frame of the mascot
+  had one under his feet, which showed in light themes.
+- Settings → AI formatting disappeared when formatting was off (after "No AI
+  formatting for now" at setup, or "Gooby, formatting off"), leaving no
+  switch to turn it back on. It's always there now, with the switch on top.
+- Settings → Projects (and each project's words) only showed with "Save
+  dictations as files" on. A project only asks for a folder when dictations
+  are saved as files.
+- At large text sizes, Settings no longer runs off the edge: the sidebar
+  scrolls so Help is always reachable, Help's lists stack instead of
+  squeezing to a word per line, and the AI formatting fields and text-size
+  tiles fit the window.
+- Checkboxes, radio buttons, sliders and the Library's dropdowns are drawn
+  in your palette's colors; an unticked box was too faint to see on dark
+  palettes, and the audio player was pink in every palette.
+- Model cards no longer grow when you point at them, which blurred their
+  text.
+- The overlay's seconds counter no longer runs into its label, and AI
+  formatting says "Formatting..." instead of "Processing...".
+- On Linux (X11), the recording overlay is on again for installs from before
+  it was shown by default there; turn it off in General → Advanced settings
+  → Overlay if you prefer.
+- On Windows, Gooby's window no longer grows a little taller each time it
+  opens, and the Back button on setup's model list no longer sits under the
+  title bar.
+- How many recordings to keep is greyed out unless Auto-delete recordings is
+  set to Keep latest, the only time it's used. Auto-delete recordings shows
+  up in Settings search and says what it never deletes.
+- Settings texts that were out of date: the paste method no longer mentions
+  "None", Clipboard handling and Copy when done explain how they differ,
+  Help says where Snippets are, and "Text isn't formatted" in Help names the
+  likely causes.
+- Setup no longer says AI formatting is downloading when Ollama already has
+  the model.
 - A fresh install no longer greets you with "What's new… Gooby has been
-  updated".
+  updated", and "What's new" shows links in release notes as plain words.
 - Clicking download twice (or reloading the window) no longer starts a
   second download of the same model that fights the first.
+- Cancelling a dictation while it was being transcribed or formatted left
+  its audio file behind, unseen in the Library and never deleted. Gooby now
+  removes it, and on startup clears out any such leftovers, downloads not
+  resumed for a week and the log from before Gooby was renamed.
+- Gooby's logs stay small: they record the main steps instead of every
+  detail (the detailed level is still in Debug settings), and the built-in
+  formatter's log starts over past 500 KB. On Linux the window no longer
+  keeps a cache of its own pages on disk (up to ~90 MB).
+- Starting a dictation while the last one was still being typed no longer
+  shows Gooby as done and idle while you speak: the new recording starts once
+  the text is in.
 
 ### Security
+- **API keys stay in Rust**: the settings window no longer receives your saved API keys, only a sign that one is set.
+- **No API key over plain http**: a cloud AI provider at an `http://` address on another computer never gets your key.
+- **Speech models are checked after download**: a model from Hugging Face must match its published fingerprint before Gooby uses it.
+- **Less in the logs**: the debug log no longer lists your settings, and an AI provider's error reply is cut short, since it can repeat what you said.
+- **Dictations stay out of clipboard history**: on Windows and macOS, the text Gooby passes through the clipboard to paste, or to read a selection for voice editing, is kept out of clipboard history, cloud clipboard sync and clipboard managers.
+- **The speed test's temporary files** can only be read by your account and are removed after a crash.
 - Updated the OpenSSL bindings used for downloads (eight advisories) and
   other libraries with known bugs (serde_with, rand, anyhow, event-listener,
   memmap2).
+- Gooby's window can no longer read files from disk itself: the Library's
+  player gets each recording from Gooby, so the file-reading plugin and the
+  asset protocol it needed are gone.
+- AI formatting on this computer (the built-in formatter or Ollama) no
+  longer goes through a proxy set with `HTTP_PROXY` or `ALL_PROXY`: the proxy
+  could see what you said, and the built-in formatter never finished loading.
+  Cloud providers still use the proxy.
+- Updated the certificate checks used for downloads and update checks
+  (rustls-webpki, webpki-roots, webpki-root-certs): they could trust
+  intermediates that browsers no longer trust.
+- Updated a cryptography helper (ctutils) whose comparisons could take
+  different times for different values (RUSTSEC-2026-0385).
+
+### Known issues
+- **"Hey Gooby"** is experimental: it misses some voices and can wake on
+  similar phrases. It's off unless you turn it on.
+- **Esc** doesn't throw a dictation away on Linux: end it with "Gooby,
+  cancel" or use the tray.
+- **Translations** of the app are machine-made; English reads best.
+- **First install:** Windows and macOS warn that Gooby isn't from a known
+  developer, because it isn't signed with a paid certificate yet.
 
 ## 0.0.6 - 2026-10-16
 
@@ -296,3 +684,12 @@ The first Gooby build.
   dictation isn't slow.
 - Windows scripts to build the installer and run the checks (`build.bat`,
   `check.bat`).
+
+[Unreleased]: https://github.com/gooby-app/gooby-dev/compare/v0.0.7...HEAD
+[0.0.7]: https://github.com/gooby-app/gooby-dev/compare/v0.0.6...v0.0.7
+[0.0.6]: https://github.com/gooby-app/gooby-dev/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/gooby-app/gooby-dev/compare/v0.0.4...v0.0.5
+[0.0.4]: https://github.com/gooby-app/gooby-dev/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/gooby-app/gooby-dev/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/gooby-app/gooby-dev/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/gooby-app/gooby-dev/tree/v0.0.1

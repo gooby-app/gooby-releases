@@ -2,15 +2,15 @@
 
 Known issues, fixes and command-line flags for Gooby.
 
-## Known Issues & Current Limitations
+## Known issues & current limitations
 
 This project is actively being developed and has some [known issues](https://github.com/gooby-app/releases/issues). We believe in transparency about the current state:
 
-### Bluetooth Headset Microphones (macOS)
+### Bluetooth headset microphones (macOS)
 
 Using a Bluetooth headset microphone on macOS may temporarily reduce playback quality or volume while recording because Bluetooth switches to bidirectional audio. Keep your headphones as the output device and select your Mac's built-in or an external microphone in Gooby to avoid this.
 
-### fn and Globe Key Shortcuts (macOS)
+### fn and Globe key shortcuts (macOS)
 
 Shortcuts that include the `fn` (Globe) key **only work on Apple keyboards** — your Mac's built-in keyboard or an Apple external keyboard. They will never trigger on a third-party keyboard, even while it is connected to the same Mac.
 
@@ -18,7 +18,12 @@ This is a hardware limitation rather than a Gooby bug. `fn` is not part of the s
 
 If you switch between a MacBook keyboard and an external one, pick a shortcut built from standard modifiers (`ctrl`, `option`, `shift`, `command`) or a regular key instead.
 
-### Linux Notes
+### Linux notes
+
+**Which file to install:** the AppImage (and the one-command install) needs
+glibc 2.38 or newer: Ubuntu 24.04, Debian 13, Fedora 39 or later. On Ubuntu
+22.04, Debian 12 and systems built on them, such as Linux Mint 21, install the
+`.deb`; the AppImage won't start there.
 
 **Typing into other apps:**
 
@@ -26,7 +31,7 @@ Gooby types and pastes without any extra tools on X11, and on GNOME and KDE
 Wayland through the desktop's remote-desktop permission: the first time Gooby
 types, your desktop asks once whether to allow it. On other Wayland compositors
 (Sway, Hyprland and other wlroots-based ones) Gooby uses one of these, which
-the `.deb` and `.rpm` packages pull in as recommended packages:
+the `.deb` package pulls in as recommended packages:
 
 | Tool                 | Install                         | Notes                                           |
 | -------------------- | ------------------------------- | ----------------------------------------------- |
@@ -43,7 +48,7 @@ desktop, which asks you to confirm them once. On older desktops (such as GNOME
 46 on Ubuntu 24.04), add a custom shortcut that runs `gooby --toggle-transcription`
 (steps below); Settings shows the same hint.
 
-**Other Notes:**
+**Other notes:**
 
 - **Runtime library dependency (`libgtk-layer-shell.so.0`)**:
   - Gooby links `gtk-layer-shell` on Linux. If startup fails with `error while loading shared libraries: libgtk-layer-shell.so.0`, install the runtime package for your distro:
@@ -56,9 +61,9 @@ desktop, which asks you to confirm them once. On older desktops (such as GNOME
 
   - For building from source on Ubuntu/Debian, you may also need `libgtk-layer-shell-dev`.
 
-- The recording overlay is disabled by default on Linux (`Overlay Position: None`) because certain compositors treat it as the active window. When the overlay is visible it can steal focus, which prevents Gooby from pasting back into the application that triggered transcription. If you enable the overlay anyway, be aware that clipboard-based pasting might fail or end up in the wrong window.
-- Gooby disables the WebKit DMA-BUF renderer by default on Linux, but preserves explicit `WEBKIT_DISABLE_DMABUF_RENDERER` values. For rendering workarounds, see [Troubleshooting → Linux Startup Crashes or Instability](#linux-startup-crashes-or-instability).
-- If Gooby fails to start reliably on Linux, see [Troubleshooting → Linux Startup Crashes or Instability](#linux-startup-crashes-or-instability).
+- On Linux with Wayland, some compositors treat the recording overlay as the active window, so it can take focus and Gooby can't paste back into the app you were using. If text lands in the wrong window or not at all, set **Overlay** to **None** (Settings → General → Advanced settings). On X11 the overlay is on (Minimal) by default.
+- Gooby disables the WebKit DMA-BUF renderer by default on Linux, but preserves explicit `WEBKIT_DISABLE_DMABUF_RENDERER` values. For rendering workarounds, see [Troubleshooting → Linux startup crashes or instability](#linux-startup-crashes-or-instability).
+- If Gooby fails to start reliably on Linux, see [Troubleshooting → Linux startup crashes or instability](#linux-startup-crashes-or-instability).
 - **Global keyboard shortcuts (Wayland, older desktops):** where the desktop has no shortcuts portal, set a system-level shortcut in your desktop environment or window manager. Use the [CLI flags](#command-line-flags) as the command for your custom shortcut.
 
   **GNOME:**
@@ -93,10 +98,10 @@ desktop, which asks you to confirm them once. On older desktops (such as GNOME
 
 - You can also trigger Gooby externally via Unix signals or the CLI flags, which lets Wayland window managers or other hotkey daemons keep ownership of keybindings:
 
-  | Action                                    | Trigger                                                  |
-  | ----------------------------------------- | -------------------------------------------------------- |
-  | Toggle transcription                      | `pkill -USR2 -n gooby` or `gooby --toggle-transcription` |
-  | Toggle transcription with post-processing | `gooby --toggle-post-process`                            |
+  | Action                                  | Trigger                                                  |
+  | --------------------------------------- | -------------------------------------------------------- |
+  | Toggle transcription                    | `pkill -USR2 -n gooby` or `gooby --toggle-transcription` |
+  | Toggle transcription with AI formatting | `gooby --toggle-post-process`                            |
 
   Example Sway config:
 
@@ -109,26 +114,25 @@ desktop, which asks you to confirm them once. On older desktops (such as GNOME
 
   > **Behavior change:** older releases also accepted `SIGUSR1` for toggling transcription with post-processing. WebKitGTK — the webview engine embedded in Gooby on Linux — uses SIGUSR1 internally to coordinate JavaScript garbage collection, so listening for it caused phantom recordings and interrupted dictations every few minutes. Gooby no longer listens for SIGUSR1 on Linux; the post-processing toggle is still available via `gooby --toggle-post-process`. **Remove any `pkill -USR1` bindings**: the signal is now delivered straight to WebKit's internal handler and can crash the app.
 
-**Overlay & Pasting Issues (Linux):**
+**Overlay and pasting issues (Linux):**
 
 - The recording overlay window can interfere with pasting transcribed text into target applications on Linux (X11)
-- **Solution:** Open **Settings > Advanced** and set **"Overlay Position"** to **"None"** to disable the overlay
-- Enable **"Audio Feedback"** (also in Advanced) if you still want audible confirmation of recording state
+- **Solution:** Open **Settings → General → Advanced settings** and set **Overlay** to **None** to turn the overlay off
+- Turn on **Sounds** (Settings → General) if you still want to hear when a recording starts and stops
 - Users who upgrade from older versions or import settings from other platforms may need to manually apply this change
 
 ## Troubleshooting
 
-### Previous Clipboard Content Is Pasted Instead of the Transcription
+### Nothing, or your previous clipboard, is pasted instead of the transcription
 
-If the transcription is correct in the **Library** but Gooby inserts text you copied earlier: with the standard clipboard paste method, Gooby restores your previous clipboard after a fixed delay. Under load, the receiving application may read the clipboard only after that restoration.
+If the transcription is correct in the **Library** but nothing appears, or Gooby inserts something you copied earlier: Gooby pastes through the clipboard and then puts your previous clipboard back. An app that reads the clipboard late (Notepad++, or any app under load) can get the old content, or nothing if it was an image.
 
-1. Open Gooby's settings window and press `Cmd+Shift+D` (macOS) or `Ctrl+Shift+D` (Windows/Linux) to reveal **Debug**.
-2. On **macOS and Windows**, try **Reliable Paste (Beta)** in Debug with a clipboard paste method selected. It uses clipboard read notifications to delay restoration instead of relying on the standard fixed delay. Test it in the application where the problem occurs; it is still experimental.
-3. If Reliable Paste is disabled or unavailable, increase **Paste Delay (After)** in Debug and test again. This controls the wait before restoring your previous clipboard. **Paste Delay (Before)** controls the wait before sending the paste keystroke and addresses a different part of the operation. These delay settings apply to the standard paste path, not Reliable Paste.
+1. On **macOS and Windows**, check that **Wait for the app to paste** is on (Settings → General → Advanced → Output; on by default) with a clipboard paste method. Gooby then puts your clipboard back only after the app has read the transcription.
+2. On **Linux**, or with that switch off, Gooby waits a fixed time (300 ms) first. Press `Ctrl+Shift+D` (`Cmd+Shift+D` on macOS) to reveal **Debug** and raise **Paste delay (after)**. **Paste delay (before)** is the wait before the paste keystroke, a different step.
 
-If the problem persists, [open an issue](https://github.com/gooby-app/releases/issues) with your Gooby version, operating system, receiving application, paste method, Reliable Paste setting, and before/after delays. Redact private dictated text before sharing logs.
+If the problem persists, turn on **Developer mode** (Settings → General → Advanced), dictate once, and copy the **Logs** panel into [an issue](https://github.com/gooby-app/releases/issues) with your Gooby version, operating system and the app you dictated into. The panel includes what you said, so remove anything private first.
 
-### Shortcuts Stop Working on macOS (Secure Input)
+### Shortcuts stop working on macOS (Secure Input)
 
 macOS Secure Input stops other apps from seeing key presses while it is on, so
 Gooby's shortcut can't fire. Password fields turn it on briefly, but some apps
@@ -143,15 +147,15 @@ managers, or a stuck login window. Gooby shows a warning while it stays on.
 3. If nothing obvious holds it, lock the screen and unlock it again, or log out
    and back in.
 
-### Manual Model Installation (For Proxy Users or Network Restrictions)
+### Manual model installation (for proxy users or network restrictions)
 
 If you're behind a proxy, firewall, or in a restricted network environment where Gooby cannot download models automatically, you can manually download and install them. The URLs are publicly accessible from any browser.
 
-#### Step 1: Find Your App Data Directory
+#### Step 1: Find your app data directory
 
 1. Open Gooby settings
 2. Navigate to the **About** section
-3. Copy the "App Data Directory" path shown there, or use the shortcuts:
+3. Copy the "App data directory" path shown there, or use the shortcuts:
    - **macOS**: `Cmd+Shift+D` to open debug menu
    - **Windows/Linux**: `Ctrl+Shift+D` to open debug menu
 
@@ -161,7 +165,7 @@ The typical paths are:
 - **Windows**: `C:\Users\{username}\AppData\Roaming\com.gooby.dictation\`
 - **Linux**: `~/.local/share/com.gooby.dictation/`
 
-#### Step 2: Create Models Directory
+#### Step 2: Create models directory
 
 Inside your app data directory, create a `models` folder if it doesn't already exist:
 
@@ -173,7 +177,7 @@ mkdir -p ~/Library/Application\ Support/com.gooby.dictation/models
 New-Item -ItemType Directory -Force -Path "$env:APPDATA\com.gooby.dictation\models"
 ```
 
-#### Step 3: Download Model Files
+#### Step 3: Download model files
 
 Download the models you want from below
 
@@ -188,7 +192,7 @@ Download the models you want from below
 
 - Q8_0 (731 MB): `https://huggingface.co/handy-computer/parakeet-unified-en-0.6b-gguf/resolve/main/parakeet-unified-en-0.6b-Q8_0.gguf`
 
-#### Step 4: Install Models
+#### Step 4: Install models
 
 **For Whisper Models (.bin files):**
 
@@ -204,21 +208,21 @@ Simply place the `.bin` file directly into the `models` directory:
 
 **For GGUF Models (.gguf files):**
 
-Place the `.gguf` file directly into the `models` directory, exactly like the Whisper `.bin` files above. Gooby also picks up models already present in the shared Hugging Face cache (`~/.cache/huggingface/hub`), so a copy downloaded by another tool works without being moved.
+Place the `.gguf` file directly into the `models` directory, exactly like the Whisper `.bin` files above. Gooby also picks up models already present in the shared Hugging Face cache (`~/.cache/huggingface/hub`), so a copy downloaded by another tool works without being moved. Gooby's own downloads go to `huggingface/hub` in its data folder.
 
 **Important Notes:**
 
 - Do not rename the `.bin` or `.gguf` files—use the exact filenames from the download URLs
 - After placing the files, restart Gooby to detect the new models
 
-#### Step 5: Verify Installation
+#### Step 5: Verify installation
 
 1. Restart Gooby
 2. Open Settings → Models
 3. Your manually installed models should now appear as "Downloaded"
 4. Select the model you want to use and test transcription
 
-### Custom Whisper Models
+### Custom Whisper models
 
 Gooby can auto-discover custom Whisper GGML models placed in the `models` directory. This is useful for users who want to use fine-tuned or community models not included in the default model list.
 
@@ -227,7 +231,7 @@ Gooby can auto-discover custom Whisper GGML models placed in the `models` direct
 1. Obtain a Whisper model in GGML `.bin` format (e.g., from [Hugging Face](https://huggingface.co/models?search=whisper%20ggml))
 2. Place the `.bin` file in your `models` directory (see paths above)
 3. Restart Gooby to discover the new model
-4. The model will appear in the "Custom Models" section of the Models settings page
+4. The model appears under **Downloaded models** in Settings → Models, marked **Custom**
 
 **Important:**
 
@@ -235,7 +239,7 @@ Gooby can auto-discover custom Whisper GGML models placed in the `models` direct
 - The model must be a valid Whisper GGML format (`.bin` file)
 - Model name is derived from the filename (e.g., `my-custom-model.bin` → "My Custom Model")
 
-### Linux Startup Crashes or Instability
+### Linux startup crashes or instability
 
 If Gooby fails to start reliably on Linux — for example, it crashes shortly after launch, never shows its window, or reports a Wayland protocol error — try the steps below in order.
 
@@ -300,7 +304,7 @@ env -u GOOBY_NO_GTK_LAYER_SHELL GDK_BACKEND=wayland gooby
 
 If this works, apply `GDK_BACKEND=wayland` only to Gooby's launcher.
 
-### Vulkan Overlays and Capture Tools on Windows (`GOOBY_KEEP_VULKAN_IMPLICIT_LAYERS`)
+### Vulkan overlays and capture tools on Windows (`GOOBY_KEEP_VULKAN_IMPLICIT_LAYERS`)
 
 On Windows, Gooby asks the Vulkan loader to skip implicit layers to avoid crashes caused by overlay and capture hooks. GPU acceleration remains enabled; this does not change system-wide settings.
 
@@ -321,7 +325,7 @@ Gooby supports command-line flags for controlling a running instance and customi
 
 ```bash
 gooby --toggle-transcription    # Toggle recording on/off
-gooby --toggle-post-process     # Toggle recording with post-processing on/off
+gooby --toggle-post-process     # Toggle recording with AI formatting on/off
 gooby --cancel                  # Cancel the current operation
 ```
 
