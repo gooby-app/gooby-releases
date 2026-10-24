@@ -1,13 +1,13 @@
 # Gooby privacy policy
 
-Effective 2026-10-23
+Effective 2026-10-24
 
 Gooby is built so that what you say stays on your computer. Speech
 recognition runs locally, nothing is sent anywhere unless you turn it on, and
 there is no account, telemetry or analytics.
 
-**Who we are.** Gooby is made by Itshak Chattopadhyay, Amogh Kaja and Adhitya
-Swaminathan ("we"), in India. For anything about this policy or your data,
+**Who we are.** Gooby is made by Itshak Chattopadhyay and Amogh Kaja ("we"), in
+India. For anything about this policy or your data,
 write to [hello@heygooby.com](mailto:hello@heygooby.com).
 
 **In short:** we never receive what you dictate, your recordings, your
@@ -248,6 +248,5 @@ problem privately, see [SECURITY.md](SECURITY.md).
 
 ---
 
-© 2026 Itshak Chattopadhyay, Amogh Kaja and Adhitya Swaminathan. All rights
-reserved. Gooby is free to use during the alpha and beta under its end-user
+© 2026 Itshak Chattopadhyay and Amogh Kaja. All rights reserved. Gooby is free to use during the alpha and beta under its end-user
 license ([LICENSE.md](LICENSE.md)).

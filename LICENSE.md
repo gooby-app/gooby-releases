@@ -1,9 +1,9 @@
 # Gooby end-user license
 
-Version 1.0, effective 2026-10-23
+Version 1.1, effective 2026-10-24
 
-This license is an agreement between you and Itshak Chattopadhyay, Amogh
-Kaja and Adhitya Swaminathan ("we") about the Gooby app ("Gooby"). By
+This license is an agreement between you and Itshak Chattopadhyay and Amogh
+Kaja ("we") about the Gooby app ("Gooby"). By
 installing or using Gooby you agree to it. If you don't agree, don't install
 or use Gooby.
 
@@ -81,6 +81,5 @@ Questions: [hello@heygooby.com](mailto:hello@heygooby.com).
 
 ---
 
-© 2026 Itshak Chattopadhyay, Amogh Kaja and Adhitya Swaminathan. All rights
-reserved. Gooby is free to use during the alpha and beta under its end-user
+© 2026 Itshak Chattopadhyay and Amogh Kaja. All rights reserved. Gooby is free to use during the alpha and beta under its end-user
 license (LICENSE.md).

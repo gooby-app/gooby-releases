@@ -581,6 +581,5 @@ downloaded from their publishers and come with their own licenses.
 
 ---
 
-© 2026 Itshak Chattopadhyay, Amogh Kaja and Adhitya Swaminathan. All rights
-reserved. Gooby is free to use during the alpha and beta under its end-user
+© 2026 Itshak Chattopadhyay and Amogh Kaja. All rights reserved. Gooby is free to use during the alpha and beta under its end-user
 license ([LICENSE.md](LICENSE.md)).
