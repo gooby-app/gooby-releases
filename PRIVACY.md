@@ -56,7 +56,9 @@ Everything is kept in Gooby's data folder:
   provider for them).
 - `history-before-update.db`: a copy of `history.db` made just before an
   update changes its layout, so nothing is lost if that goes wrong. Only the
-  newest copy is kept; it's removed with everything else.
+  newest copy is kept, and Gooby deletes it a week after the update, so
+  dictations you delete don't stay in it; it's also removed with everything
+  else.
 - `recordings/`: the audio of each dictation, as Opus files (`.opus`, about
   10 MB per hour of speech; recordings from older versions are converted from
   `.wav` in the background). Every recording is kept until

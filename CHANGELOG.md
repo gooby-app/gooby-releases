@@ -179,6 +179,10 @@ click. And the start of phase 2: summaries for every recording.
   colors. Classic stays the default.
 
 ### Changed
+- **Two speech models left the list**: Canary 1B, whose license allows only
+  non-commercial use, and MedASR, which comes with Google's terms for health
+  apps. Canary 1B Flash and Canary 1B v2 do the same job under an open
+  license.
 - **Gooby tidies up after itself**: half-finished downloads go after a day
   instead of a week, and the installer a Windows update leaves behind and a
   speed test's leftover audio go too. Switching to another speech or AI
@@ -451,6 +455,10 @@ click. And the start of phase 2: summaries for every recording.
 - **Translations** of the app are machine-made; English reads best.
 - **First install:** Windows and macOS warn that Gooby isn't from a known
   developer, because it isn't signed with a paid certificate yet.
+- **An AI server on another computer** that needs an API key must use an
+  `https://` address: Gooby won't send a key over plain `http://` to another
+  computer, where others on the network could read it, and the server then
+  answers that the request isn't allowed.
 
 ## 0.0.6 - 2026-10-16
 
