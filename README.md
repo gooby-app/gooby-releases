@@ -537,6 +537,8 @@ To remove your data before uninstalling another way, use Settings → Storage �
 - **Have an idea?** [Suggest it](https://github.com/gooby-app/releases/issues/new?template=feature_request.yml).
 - **Want to chat?** Join [Gooby's Discord](https://heygooby.com/discord) for
   questions, ideas and news (also in Settings → About).
+- **Want to support Gooby?** [Donate](https://rzp.io/rzp/2BYxcWw). Gooby
+  stays free, with no ads, account or tracking.
 - **Security problem?** Please report it privately, as [SECURITY.md](SECURITY.md)
   explains.
 - **Testing the alpha?** [TESTER-GUIDE.md](TESTER-GUIDE.md) is the script,
