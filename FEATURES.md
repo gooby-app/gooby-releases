@@ -8,16 +8,19 @@ runs on Linux, Windows and macOS.
 ## Dictation
 
 - **One-click setup**: the first screen asks which language you'll speak,
-  shows the speech model and AI formatter that suit your computer and the
-  microphone Gooby will use; one click downloads them and you're dictating
-  as soon as speech is ready. For formatting it suggests Ollama (or links to
-  it), or keeping it all inside Gooby. Optionally, your name and email
-  become snippets and your country's common words are turned on.
+  shows the speech model that suits your computer and the microphone Gooby
+  will use; one click downloads it and you're dictating as soon as it's
+  ready. Gooby's own formatting (Inky) tidies your words from the first
+  dictation, with nothing else to install or choose; AI models are in
+  Settings → AI formatting, one click each. Optionally, your name and email
+  become snippets and your country's common words are turned on. While the
+  model downloads, a short tour shows what Gooby does (Help → Take the tour
+  again), and the download's percent, size and speed show under it.
 - **Always ready**: Gooby loads its speech model and AI formatter when it
   starts and keeps them loaded, so even the first dictation of the day is
   quick, on a laptop without a graphics card too. Until they're loaded the
-  window and tray say "Getting ready…", and a dictation is typed without AI
-  formatting.
+  window and tray say "Getting ready…", and Inky formats dictations
+  meanwhile.
 - **Press a shortcut, speak, and the text appears** where your cursor is.
   The default shortcut is Ctrl+Alt+Space; push-to-talk or press-to-toggle.
   If another app already holds the default, Gooby picks a free one
@@ -46,10 +49,27 @@ runs on Linux, Windows and macOS.
 ## Talk to Gooby
 
 - **Voice commands**: start with "Gooby," to change things by voice:
-  "formatting off", "sounds off", "stop typing", "use the email style",
+  "formatting off", "what formatting are you using?", "sounds off", "stop
+  typing", "use the email style",
   "switch to French", "switch to the Acme project", "type that", "open the
   Library", "what can I say?", or "…Gooby, cancel" at the end to throw a
-  dictation away. Anything else is typed as said. The overlay (or a system
+  dictation away. "…Gooby, done" (or "stop", "that's it") ends a dictation
+  and types it, and "…Gooby, send" also presses Enter. Anything else is
+  typed as said.
+- **The Library by voice**: "Gooby, delete the last note", "open my note
+  about pricing", "rename that to Q3 plan", "move it to the Acme project",
+  "star that", "bring back the last note", "undo", and any page or view
+  ("open storage settings", "show me recently deleted", "search for
+  pricing"). "That" is the recording open in Gooby's window; when it isn't
+  clear which one you mean, Gooby asks instead of guessing, and a change
+  shows with Undo. A delete only moves it to Recently Deleted.
+- **Stops when you pause**: tap the shortcut to start and Gooby stops on its
+  own once you've been quiet for 3 seconds (Settings → General → Stop after
+  a pause: never, 2, 3, 5 or 10 seconds). Holding the shortcut is never cut
+  short. If nothing is heard for 10 seconds, it stops and says so.
+- **Shares the microphone**: Gooby opens it only while you dictate (and
+  while "Hey Gooby" listens), and never takes it for itself. If another app
+  does, Gooby says the microphone is busy. The overlay (or a system
   notification, with the overlay off) says what changed.
 - **Edit by voice**: select text anywhere and say "Gooby, make this
   shorter", "fix the grammar", "translate this into French" or "format this";
@@ -57,6 +77,30 @@ runs on Linux, Windows and macOS.
   an AI formatter.
 - **Notes to self**: "Gooby, note: …" keeps a dictation in the Library
   without typing it (see Library below).
+- **Reminders**: "Gooby, remind me to call Mom tomorrow at 5" (or "set a
+  reminder …", "schedule a meeting …", "add … to my calendar") or "remind
+  me" anywhere in a dictation is added to the calendar at once (today,
+  tomorrow, weekdays, "the 27th", "June 3rd", "in 20 minutes", "at 3",
+  "noon"). The overlay says "Added: Call Mom" with the day and time; clicking
+  it shows Undo, the note, and Google Calendar or Outlook when they're on. A
+  plan said to Gooby ("I need to meet Dave on the 28th") only shows a small
+  "Add reminder?" that opens the note. The dictation is typed or saved as
+  usual either way. Reminders stay linked to their note: the note shows the
+  reminder (Change, On your phone, Remove from calendar) and clicking it in
+  the calendar opens the note; any recording can get one from its toolbar.
+  A notification says when it's due while Gooby runs.
+- **Your calendars** (Settings → Calendar): nothing leaves the computer
+  until **Allow cloud calendars** is on (off by default); without it, a
+  phone gets a reminder from its QR code. "On your phone" asks iPhone or
+  Android and points to the quickest way. Connect iCloud (Apple ID and an
+  app-specific password, in three steps; Gooby picks the calendar) or
+  another CalDAV calendar, and reminders go there too, with their alert;
+  editing or deleting one in the Library changes it there. Google Calendar
+  and Outlook (Outlook.com or work and school) open with the reminder filled
+  in, one click to save, no sign-in in Gooby; "your calendar app" opens a
+  calendar file. A reminder's QR code (On your phone) adds it to a phone's
+  calendar from its camera. Only connected, switched-on calendars are used.
+  "Reminders by voice" can be turned off.
 - **"Hey Gooby"** (off by default): start a dictation or a command by voice;
   it stops two seconds after you stop talking. Setup offers it, and Settings → General and the
   tray menu turn it on or off; the tray icon shows a blue dot while it
@@ -68,15 +112,40 @@ runs on Linux, Windows and macOS.
 
 ## Formatting
 
-- **AI formatting** (optional) tidies punctuation, lists and paragraphs with
-  a model on your computer: built into Gooby, or Ollama, or Apple
-  Intelligence on Macs. Cloud providers are blocked unless you allow them.
-- **Quick formatting**: whatever the AI doesn't format (short dictations,
-  AI formatting off or still loading) is tidied by rules: no "um"s or
-  stutters, spoken punctuation, numbers, money and times, lists, letters and
-  "scratch that". Instant, and nothing to download. Settings → AI
-  formatting → Tidy up without AI turns it off. Setup suggests the rules
-  alone on light computers (under 8 GB of RAM, no graphics card).
+- **Two ways to format**, as two cards in Settings → AI formatting:
+  Gooby's own (Inky) or an AI model. "Type exactly as said", in Advanced,
+  turns formatting off; "Gooby, formatting off" and "on" switch it by voice,
+  and "Gooby, AI formatting on" or "off" switches between the AI and Inky.
+- **Gooby's own (Inky)**: Inky, Gooby's built-in formatting model, puts in
+  punctuation, capitals and paragraphs and takes out "um"s and false starts,
+  and rules write spoken punctuation, numbers, money and times, lists,
+  letters and "scratch that". Instant (about 10–40 ms), on your computer,
+  and nothing to download. It also formats whatever the AI doesn't: short
+  dictations, and any while the AI isn't ready. Setup suggests it alone on
+  light computers (under 8 GB of RAM, no graphics card).
+- **AI formatting** (optional) rewords more, with a model on your computer:
+  built into Gooby, or Ollama, or Apple Intelligence on Macs. Cloud
+  providers are blocked unless you allow them. It formats dictations of 6
+  words or more, starting from the rules' tidy version, which makes small
+  models much better at it. Gooby starts Ollama when it's needed and closes
+  it when you quit, so it doesn't have to start at login.
+- **Who formats, right now**: Settings → AI formatting says whether Inky or
+  the AI formats your dictations, and when the AI was picked but can't, why
+  (not downloaded, still loading, Ollama not running, cloud AI not allowed,
+  no API key), with a one-click fix where there is one. Ask "Gooby, what
+  formatting are you using?" for the same on the overlay. When a dictation
+  meant for the AI is formatted by Inky instead, the overlay says so and
+  why, and the Library shows under each recording what formatted it.
+- **Emails and messages**: start with "Email to Sam: …" or "WhatsApp message
+  to Mom: …" (or "write an email saying …", "text to the team …"), and
+  Gooby writes an email ("Hi Sam," at the top, "Best," and your name at the
+  end) or a short message with no greeting. The AI puts `[Date]`, `[Place]`
+  or `[Name]` where you didn't say one. A long dictation into an email app
+  becomes an email too; a short one (a subject, a quick reply) doesn't, and
+  neither does a request typed to an AI assistant ("write an email to Sam
+  saying …" in ChatGPT is left for the AI) where Gooby can tell the app: on
+  Windows and Linux X11, and on macOS in the ChatGPT and Claude apps (not a
+  browser tab), never on Wayland.
 - **Formatting that fits the app**: paragraphs in an email, casual in a
   chat, clear prompts for AI assistants, and your words as said in a
   terminal or code editor. Not on Wayland.
@@ -97,7 +166,7 @@ runs on Linux, Windows and macOS.
 Every dictation is kept in the Library, with its audio.
 
 - **Projects, nested tags (`work/acme`) and favorites**, plus Unsorted and
-  Recently Deleted (kept 30 days).
+  Recently Deleted (kept until you empty it).
 - **One tree, then what you said**: projects, tags and views in one column,
   the open one's recordings right under it (click it again to fold it); the
   rest of the window shows the selected recording, with play, copy, edit,
@@ -121,7 +190,10 @@ Every dictation is kept in the Library, with its audio.
   summarize older recordings. On for formatters on your computer; with a
   cloud provider only if you turn it on. It never slows a dictation down.
 - **List or calendar**: recordings grouped by day, with search across titles,
-  transcripts, notes and summaries; the calendar marks the days you recorded.
+  transcripts, notes and summaries; the calendar marks the days you recorded
+  and the days with reminders. Pick a day for its reminders (tick them off,
+  or right-click to edit or delete) above its recordings. A note's "Add to
+  calendar" makes it a reminder later.
 - **Where it went**: each recording says which app it was typed into
   ("Typed into Slack"), or that it was kept as a note.
 - **Live transcript**: words highlight while the audio plays (the play button
@@ -137,12 +209,18 @@ Every dictation is kept in the Library, with its audio.
 
 ## Around the app
 
+- **Command menu**: Ctrl+K (Cmd+K on a Mac) finds any Settings page or
+  setting, the Library, and the common actions (formatting on or off,
+  "Hey Gooby" on or off, check for updates, the tour), with their shortcuts.
+  Alt+Left, Cmd+[ or the mouse's back button goes from Settings back to the
+  Library, and Ctrl/Cmd+Z undoes a move or delete in the Library while its
+  Undo bar shows.
 - **Performance** (Settings → Performance): this computer's memory and
   graphics, the speed settings together (GPU or CPU for the speech model and
-  the built-in formatter, when there's a graphics card; the unload timeout;
-  tidying without AI), and a speed test. Say a phrase (it stops when you do)
-  and see a chart of how long loading, transcribing, AI formatting and the
-  quick rules, saving and tagging took, starting from unloaded models, with
+  the built-in formatter, when there's a graphics card; the unload timeout),
+  and a speed test. Say a phrase (it stops when you do)
+  and see a chart of how long loading, transcribing, AI formatting and
+  Inky, saving and tagging took, starting from unloaded models, with
   a recommendation and one-click changes. With a graphics card, compare
   Auto, the CPU and each graphics chip on the same phrase, side by side,
   without changing your settings; the recommendation weighs speed first,
@@ -157,6 +235,11 @@ Every dictation is kept in the Library, with its audio.
 - **Text size** from Small to Largest (Ctrl/Cmd + and −), scaling text,
   icons and spacing together, overlay included. It follows the system's text
   size setting (Windows Text size, GNOME Large Text) unless you turn that off.
+- **Text font**: Gooby's pixel font by default, drawn pixel-perfect (every
+  pixel of a letter is a whole screen pixel, at 100% or 200%), so it's
+  sharp; or your system's own font (Settings → Themes). Fractional scaling
+  on Linux and the scaled "Looks like" modes on a Mac resample the window, so
+  pixel text is softer there.
 - **Tray icon** with Open Gooby, "Listen for “Hey Gooby”", update status and
   quit; it shows when Gooby is recording, transcribing or listening.
 - **Updates**, off until you say yes: signed, installed in the background,
@@ -181,7 +264,7 @@ Every dictation is kept in the Library, with its audio.
 
 ## Install
 
-Installers are on [gooby-app/releases](https://github.com/gooby-app/releases/releases/latest).
+Installers are on [gooby-app/gooby-releases](https://github.com/gooby-app/gooby-releases/releases/latest).
 
 - **Windows**: the `Gooby_x.y.z_x64-setup.exe` installer.
 - **macOS**: the `.dmg`, for Macs with Apple Silicon (allow the first launch
@@ -190,7 +273,7 @@ Installers are on [gooby-app/releases](https://github.com/gooby-app/releases/rel
   the `.deb`.
 
 Gooby isn't signed yet, so Windows and macOS ask whether you trust it the first
-time; [INSTALL.md](https://github.com/gooby-app/releases/blob/main/INSTALL.md)
+time; [INSTALL.md](https://github.com/gooby-app/gooby-releases/blob/main/INSTALL.md)
 shows what to click.
 
 Updates install from inside Gooby, which keeps your settings, models and

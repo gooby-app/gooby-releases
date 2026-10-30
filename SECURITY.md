@@ -4,7 +4,7 @@
 
 Please **don't open a public issue** for a security problem. Report it
 privately through GitHub instead:
-[Report a vulnerability](https://github.com/gooby-app/releases/security/advisories/new).
+[Report a vulnerability](https://github.com/gooby-app/gooby-releases/security/advisories/new).
 
 Include what you found, how to reproduce it, and which Gooby version and OS
 you used. We aim to reply within a week, and we'll credit you in the release

@@ -4,7 +4,7 @@ Known issues, fixes and command-line flags for Gooby.
 
 ## Known issues & current limitations
 
-This project is actively being developed and has some [known issues](https://github.com/gooby-app/releases/issues). We believe in transparency about the current state:
+This project is actively being developed and has some [known issues](https://github.com/gooby-app/gooby-releases/issues). We believe in transparency about the current state:
 
 ### Bluetooth headset microphones (macOS)
 
@@ -130,7 +130,7 @@ If the transcription is correct in the **Library** but nothing appears, or Gooby
 1. On **macOS and Windows**, check that **Wait for the app to paste** is on (Settings → General → Advanced → Output; on by default) with a clipboard paste method. Gooby then puts your clipboard back only after the app has read the transcription.
 2. On **Linux**, or with that switch off, Gooby waits a fixed time (300 ms) first. Press `Ctrl+Shift+D` (`Cmd+Shift+D` on macOS) to reveal **Debug** and raise **Paste delay (after)**. **Paste delay (before)** is the wait before the paste keystroke, a different step.
 
-If the problem persists, turn on **Developer mode** (Settings → General → Advanced), dictate once, and copy the **Logs** panel into [an issue](https://github.com/gooby-app/releases/issues) with your Gooby version, operating system and the app you dictated into. The panel includes what you said, so remove anything private first.
+If the problem persists, turn on **Developer mode** (Settings → General → Advanced), dictate once, and copy the **Logs** panel into [an issue](https://github.com/gooby-app/gooby-releases/issues) with your Gooby version, operating system and the app you dictated into. The panel includes what you said, so remove anything private first.
 
 ### Shortcuts stop working on macOS (Secure Input)
 
@@ -291,7 +291,7 @@ Exec=env GOOBY_NO_GTK_LAYER_SHELL=1 gooby
 
 Gooby's built-in autostart rewrites its generated desktop entry, so editing that entry is not a durable workaround. For autostart, use an appropriate session/service environment, or disable Gooby's built-in autostart and manage your own startup entry with the required variable.
 
-If a workaround helps you, please [open an issue](https://github.com/gooby-app/releases/issues) describing your distro, desktop environment, and session type — that information helps us narrow down the underlying bug.
+If a workaround helps you, please [open an issue](https://github.com/gooby-app/gooby-releases/issues) describing your distro, desktop environment, and session type — that information helps us narrow down the underlying bug.
 
 ### Empty recording overlay on Hyprland / Omarchy
 

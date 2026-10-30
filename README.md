@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/Linux%20%C2%B7%20Windows%20%C2%B7%20macOS-000?style=flat-square" alt="Linux, Windows and macOS">
   <img src="https://img.shields.io/badge/runs_on-your_computer-000?style=flat-square" alt="Runs on your computer">
   <img src="https://img.shields.io/badge/account-none-000?style=flat-square" alt="No account">
-  <img src="https://img.shields.io/badge/telemetry-none-000?style=flat-square" alt="No telemetry">
+  <img src="https://img.shields.io/badge/tracking-none-000?style=flat-square" alt="No tracking">
   <img src="https://img.shields.io/badge/status-alpha-000?style=flat-square" alt="Status: alpha">
 </p>
 
@@ -52,7 +52,7 @@ pricing.
 - **Dictate into any app.** One shortcut, in any app that takes text. Hold it
   to talk, or tap to start and tap to stop. Or say "Hey Gooby" (experimental).
 - **Private by design.** Speech and formatting run on your computer. No
-  account, no telemetry, no cloud unless you turn it on.
+  account, no tracking, no cloud unless you turn it on.
 - **Clean text, not a transcript.** A local AI model fixes punctuation,
   drops the "um"s, turns spoken lists into real lists and fits the app you're
   typing into.
@@ -96,12 +96,14 @@ use Cancel in the tray menu).
 
 ### Clean text, not a transcript
 
-AI formatting tidies what you said before it's typed: punctuation and
-capitals, no "um"s or false starts, and lists when you speak in steps. It runs
-on your computer, so nothing is sent anywhere: with
-[Ollama](https://ollama.com) if you have it (setup offers it), or with a model
-built into Gooby (Gemma or Qwen, picked for your computer). You can turn it
-off in Settings, or by voice: "Gooby, formatting off".
+Gooby tidies what you said before it's typed: punctuation and capitals, no
+"um"s or false starts, and lists when you speak in steps. Pick Gooby's own
+formatting (Inky: fast, with nothing to set up) or an AI model that rewords
+more: a model built into Gooby (Gemma or Qwen, picked for your computer),
+or [Ollama](https://ollama.com) if you already have it.
+Either way it runs on your computer, so nothing is sent anywhere. Settings →
+AI formatting says which one formats your dictations right now, and "Gooby,
+formatting off" types your words exactly as said.
 
 <p align="center">
   <img src="screenshots/formatting.png" alt="What you say: um, okay, so here's the plan, one, finish the release notes, two, record the demo video, three, send the invites. What Gooby types: a numbered list of the three steps." width="100%">
@@ -139,13 +141,15 @@ Anything Gooby doesn't recognize is typed as you said it.
 | "Gooby, insert my signature" | Types a snippet you saved (a signature, an address, a meeting link) exactly. |
 | "Gooby, SOAP note: …" | Formats what follows with your AI formatting prompt of that name, for this dictation only. |
 | "Gooby, type that" | Types your last dictation where the cursor is. |
-| "Gooby, formatting off" | Turns AI formatting off (or on again). |
+| "Gooby, formatting off" | Types your words exactly as said ("formatting on" goes back). "AI formatting on" or "off" switches between the AI and Inky. |
+| "Gooby, what formatting are you using?" | Says who formats your dictations right now: Inky or the AI model, and why not the AI, if it isn't. |
 | "Gooby, use the email style" | Formats with one of your styles; "the default style" goes back. |
 | "Gooby, switch to French" | Dictate in another language; "auto-detect" goes back. |
 | "Gooby, switch to the Acme project" | Files new dictations in Acme until "Gooby, no project". |
 | "Gooby, sounds off" | Silences the start and stop sounds (or turns them on again). |
 | "Gooby, stop typing" | Keeps dictations as notes in the Library until "start typing". |
-| "Gooby, open the Library" | Opens Gooby ("open settings" opens Settings). |
+| "Gooby, open the Library" | Opens Gooby ("open settings" opens Settings, "open storage settings" any page, "show me recently deleted" a Library view). |
+| "Gooby, delete the last note" | Changes the Library by voice: delete, open, rename ("rename that to Q3 plan"), move ("move it to Acme"), star or bring back a recording. Say which: "the last note", "my note about pricing", or "that" for the one open in Gooby. When it isn't clear, Gooby asks instead of guessing; "Gooby, undo" takes it back. |
 | "Gooby, what can I say?" | Opens this list in Settings → Help. |
 
 Dictating while Gooby's own window is in front, with no text box selected,
@@ -193,7 +197,7 @@ the app you were typing into wasn't ready.
 </p>
 
 - **Projects, nested tags** (`work/acme`), **favorites** and **notes to
-  self**, plus Unsorted and Recently Deleted (kept for 30 days).
+  self**, plus Unsorted and Recently Deleted (kept until you empty it).
 - **Say where it goes:** start with "For the Acme project: …" or end with
   "… put it in Acme", and it's filed there with the command cut from the text.
 - **Summaries:** while Gooby is idle, your AI formatter gives each
@@ -213,17 +217,16 @@ the app you were typing into wasn't ready.
 
 ### Set up in one click
 
-The first screen asks which language you'll speak and shows the speech model,
-AI formatter and microphone Gooby picked for your computer. For formatting it
-suggests Ollama if it's installed (or links to it), or keeping it all inside
-Gooby, with the pros and cons of each; on a light computer (under 8 GB of
-RAM) it suggests quick rules instead, which tidy your words without AI. Your name and email (optional) become
-snippets, and "Hey Gooby" is offered, unticked. One click downloads what's
-needed; you can dictate as soon as speech is ready, and the formatter
-finishes in the background.
+The first screen asks which language you'll speak and shows the speech model
+and microphone Gooby picked for your computer. Gooby's own formatting (Inky)
+tidies your words from the first dictation, with nothing else to install or
+choose; AI models are one click each in Settings → AI formatting, when you
+want them. Your name and email (optional) become snippets, and "Hey Gooby" is
+offered, unticked. One click downloads the speech model, and you can dictate
+as soon as it's ready.
 
 <p align="center">
-  <img src="screenshots/setup.png" alt="First-run setup: the language, an optional name, email and country, the speech model best for this computer, and AI formatting with Ollama or quick rules without AI" width="100%">
+  <img src="screenshots/setup.png" alt="First-run setup: the language, an optional name, email and country, the speech model best for this computer, and Gooby's own formatting" width="100%">
 </p>
 
 If your system's default input can't hear a voice (a digital S/PDIF input, a
@@ -286,7 +289,8 @@ Setup downloads at most the 2.3 GB model; bigger ones are opt-in.
 Light or dark (or follow your system), six two-color palettes that also color
 the overlay, four overlay looks (Classic, Island, Soft and Pixel), and text
 from Small to Largest (**Ctrl/Cmd +** and **−**) that follows your system's
-text size on Windows and GNOME.
+text size on Windows and GNOME. Text is in Gooby's pixel font, drawn
+pixel-perfect so it's sharp, or in your system's font if you prefer.
 
 <p align="center">
   <img src="screenshots/palettes.png" alt="The Library in six palettes: 1-bit light, Game Boy dark, Amber dark, Blueprint light, Paper light and Sakura dark" width="100%">
@@ -298,8 +302,9 @@ text size on Windows and GNOME.
 
 ## Privacy in short
 
-What you say stays on your computer. There's no account, no telemetry and no
-analytics, and we never receive your dictations, recordings or settings.
+What you say stays on your computer. There's no account and no tracking, and
+we never receive your dictations, recordings or settings. We count
+downloads, and, only if you say yes, update checks, without an ID.
 Nothing that carries your words goes online unless you turn it on.
 
 <p align="center">
@@ -315,6 +320,7 @@ Nothing that carries your words goes online unless you turn it on.
 | Your Library (text, audio, notes) | Files in Gooby's data folder on your computer |
 | Model downloads | Hugging Face or Handy's mirror, only when you start one |
 | Update checks | This page's releases, only if you said yes |
+| Usage counts | heygooby.com counts update checks (version, system, install month; no ID), only if you said yes to that too |
 
 The [Gooby privacy policy](PRIVACY.md) lists every connection, every file
 Gooby keeps and your rights, and says how to reach us.
@@ -323,7 +329,7 @@ Gooby keeps and your rights, and says how to reach us.
 
 Download from [heygooby.com](https://heygooby.com/#download), or pick the file
 for your system from the
-[latest release](https://github.com/gooby-app/releases/releases/latest):
+[latest release](https://github.com/gooby-app/gooby-releases/releases/latest):
 
 | Your computer | Needs | Download |
 |---|---|---|
@@ -363,7 +369,7 @@ One command, no sudo. It installs Gooby just for you, with an app-menu entry
 and a `gooby` command, in a place where updates can replace it:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/gooby-app/releases/main/install-linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/gooby-app/gooby-releases/main/install-linux.sh | bash
 ```
 
 Or install the `.deb` with `sudo apt install ./Gooby_x.y.z_amd64.deb`, or make
@@ -422,7 +428,7 @@ internet connection at all.
 <summary><b>Is my voice used to train anything?</b></summary>
 
 No. Your audio and text stay in Gooby's folder on your computer. Gooby has no
-servers to send them to, no account and no analytics.
+servers to send them to and no account.
 </details>
 
 <details>
@@ -504,7 +510,7 @@ Plans, not promises:
 - **More languages**: mixed-language dictation, and speak in one language,
   type in another.
 
-Have an idea? [Suggest it](https://github.com/gooby-app/releases/issues/new?template=feature_request.yml).
+Have an idea? [Suggest it](https://github.com/gooby-app/gooby-releases/issues/new?template=feature_request.yml).
 
 ## Uninstall
 
@@ -518,7 +524,7 @@ Have an idea? [Suggest it](https://github.com/gooby-app/releases/issues/new?temp
   whether to keep your recordings, settings and models. (Dragging Gooby from
   Applications to the Trash works too, but keeps them.)
 - **Linux:** if you used the one-command install,
-  `curl -fsSL https://raw.githubusercontent.com/gooby-app/releases/main/install-linux.sh | bash -s -- --uninstall`.
+  `curl -fsSL https://raw.githubusercontent.com/gooby-app/gooby-releases/main/install-linux.sh | bash -s -- --uninstall`.
   It asks whether to keep your data; `--purge` instead of `--uninstall`
   removes everything without asking. For the `.deb`, `sudo apt remove gooby`;
   for the AppImage, delete it.
@@ -531,14 +537,15 @@ To remove your data before uninstalling another way, use Settings → Storage �
 
 - **Something not working?** [TROUBLESHOOTING.md](TROUBLESHOOTING.md) covers
   known issues and fixes, and Settings → Help in the app has the common ones.
-- **Found a bug?** [Report it](https://github.com/gooby-app/releases/issues/new?template=bug_report.yml).
+- **Found a bug?** [Report it](https://github.com/gooby-app/gooby-releases/issues/new?template=bug_report.yml).
   Settings → About → Log directory opens the folder with Gooby's logs;
   attaching the latest one helps a lot.
-- **Have an idea?** [Suggest it](https://github.com/gooby-app/releases/issues/new?template=feature_request.yml).
+- **Have an idea?** [Suggest it](https://github.com/gooby-app/gooby-releases/issues/new?template=feature_request.yml).
 - **Want to chat?** Join [Gooby's Discord](https://heygooby.com/discord) for
   questions, ideas and news (also in Settings → About).
-- **Want to support Gooby?** [Donate](https://rzp.io/rzp/2BYxcWw). Gooby
-  stays free, with no ads, account or tracking.
+- **Want to support Gooby?** [Buy me a coffee](https://buymeacoffee.com/heygooby),
+  or [Razorpay](https://rzp.io/rzp/2BYxcWw) for UPI; Donate in Settings → About
+  has both. Gooby stays free, with no ads, account or tracking.
 - **Security problem?** Please report it privately, as [SECURITY.md](SECURITY.md)
   explains.
 - **Testing the alpha?** [TESTER-GUIDE.md](TESTER-GUIDE.md) is the script,

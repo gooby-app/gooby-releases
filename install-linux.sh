@@ -13,7 +13,7 @@
 set -euo pipefail
 
 # Installers are published to the public releases repo (the source is private).
-REPO="gooby-app/releases"
+REPO="gooby-app/gooby-releases"
 DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 APP_DIR="$DATA_HOME/gooby"
 APPIMAGE="$APP_DIR/Gooby.AppImage"
@@ -54,7 +54,9 @@ uninstall() {
     secret-tool clear service "$ID" 2>/dev/null || true
     keys_cleared="yes"
   fi
-  rm -f "$APPIMAGE" "$BIN" "$DESKTOP" "$ICON" "$AUTOSTART"
+  # The 128 px icon is the one Gooby adds itself when it's started as a plain
+  # AppImage (linux_desktop_entry.rs).
+  rm -f "$APPIMAGE" "$BIN" "$DESKTOP" "$ICON" "$AUTOSTART" "$DATA_HOME/icons/hicolor/128x128/apps/gooby.png"
   rmdir "$APP_DIR" 2>/dev/null || true
   command -v update-desktop-database >/dev/null && update-desktop-database "$DATA_HOME/applications" 2>/dev/null || true
   if [ "$remove_data" = "yes" ]; then
@@ -104,7 +106,7 @@ glibc=$(getconf GNU_LIBC_VERSION 2>/dev/null | awk '{print $2}') || glibc=""
 if [ -n "$glibc" ]; then
   major=${glibc%%.*}; minor=${glibc#*.}; minor=${minor%%.*}
   if [ "$major" -lt 2 ] || { [ "$major" -eq 2 ] && [ "$minor" -lt 38 ]; }; then
-    die "Gooby's AppImage needs glibc 2.38 or newer (Ubuntu 24.04, Debian 13, Fedora 39), and this system has $glibc. On Ubuntu 22.04 or Debian 12, install the .deb from https://github.com/gooby-app/releases/releases/latest instead."
+    die "Gooby's AppImage needs glibc 2.38 or newer (Ubuntu 24.04, Debian 13, Fedora 39), and this system has $glibc. On Ubuntu 22.04 or Debian 12, install the .deb from https://github.com/gooby-app/gooby-releases/releases/latest instead."
   fi
 fi
 
@@ -159,6 +161,8 @@ Keywords=dictation;speech;transcription;voice;
 StartupWMClass=gooby
 EOF
 command -v update-desktop-database >/dev/null && update-desktop-database "$DATA_HOME/applications" 2>/dev/null || true
+# Some desktops only see a new icon once the icon cache knows it.
+command -v gtk-update-icon-cache >/dev/null && gtk-update-icon-cache -q -t "$DATA_HOME/icons/hicolor" 2>/dev/null || true
 
 say ""
 say "Gooby is installed. Open it from your app menu, or run: gooby"

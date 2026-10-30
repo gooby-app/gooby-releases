@@ -54,7 +54,7 @@ what you clicked.
 **Linux** (Ubuntu 22.04 or later):
 
 - **Ubuntu 24.04:** try the one-command install first:
-  `curl -fsSL https://raw.githubusercontent.com/gooby-app/releases/main/install-linux.sh | bash`.
+  `curl -fsSL https://raw.githubusercontent.com/gooby-app/gooby-releases/main/install-linux.sh | bash`.
   Gooby should be in your app menu. Or the AppImage: `chmod +x` it and open
   it.
 - **Ubuntu 22.04:** `sudo apt install ./Gooby_<version>_amd64.deb`. The
@@ -65,7 +65,7 @@ what you clicked.
 ## 2. First-run setup
 
 1. Gooby opens to setup on its own. Note what it picked: the speech model,
-   the AI formatter (or "quick rules only") and the microphone.
+   the AI formatter (or "Gooby's own (Inky)") and the microphone.
 2. Is the microphone the one you'll speak into? If not, change it and say
    so.
 3. Click to download. Note how long it took and how big it said it was.
@@ -112,8 +112,9 @@ all (or say "Gooby, what can I say?"). Try at least these:
    is in the Library.
 2. Select a sentence you typed, then **"Gooby, make this shorter."** It's
    replaced. Your clipboard should still have what it had before.
-3. **"Gooby, formatting off"**, dictate something, then **"Gooby,
-   formatting on"**.
+3. **"Gooby, formatting off"**, dictate something (it's typed exactly as
+   said), then **"Gooby, formatting on"**. Ask **"Gooby, what formatting
+   are you using?"**: does the answer match Settings → AI formatting?
 4. **"Gooby, switch to the Test project"**, dictate, then **"Gooby, no
    project"**.
 5. **"Gooby, open the Library."**
@@ -195,7 +196,7 @@ then reinstall and tick it.
 data, then reinstall and delete it.
 
 **Linux:** with the one-command install,
-`curl -fsSL https://raw.githubusercontent.com/gooby-app/releases/main/install-linux.sh | bash -s -- --uninstall`
+`curl -fsSL https://raw.githubusercontent.com/gooby-app/gooby-releases/main/install-linux.sh | bash -s -- --uninstall`
 (it asks about your data); with the `.deb`, Settings → Storage → Remove all
 Gooby data first (to delete it), then `sudo apt remove gooby`.
 
@@ -214,7 +215,7 @@ reinstalling should bring back your Library and settings.
 ## Sending us what you found
 
 Post in the testing channel on [Discord](https://heygooby.com/discord), or
-open an [issue](https://github.com/gooby-app/releases/issues). For each
+open an [issue](https://github.com/gooby-app/gooby-releases/issues). For each
 problem:
 
 - the step number from this guide (like "3.5");

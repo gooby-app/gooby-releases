@@ -1,17 +1,21 @@
 # Gooby privacy policy
 
-Effective 2026-10-24
+Effective 2026-10-29
 
 Gooby is built so that what you say stays on your computer. Speech
 recognition runs locally, nothing is sent anywhere unless you turn it on, and
-there is no account, telemetry or analytics.
+there is no account and no tracking. We count downloads, and, only if you say
+yes, how many copies are in use, without an ID (see Usage counts below). Inky, the formatting model that
+tidies your text when the AI doesn't, is bundled with Gooby, runs on your
+computer and sends nothing anywhere.
 
 **Who we are.** Gooby is made by Itshak Chattopadhyay and Amogh Kaja ("we"), in
 India. For anything about this policy or your data,
 write to [hello@heygooby.com](mailto:hello@heygooby.com).
 
 **In short:** we never receive what you dictate, your recordings, your
-Library or your settings. They stay on your computer, where you control them.
+Library or your settings (except, if you agree to be counted, the month you
+installed Gooby). They stay on your computer, where you control them.
 The few things that can reach the internet are listed below, and the ones
 that carry your text are off until you turn them on.
 
@@ -20,9 +24,11 @@ that carry your text are off until you turn them on.
 | What | When | What's sent |
 |---|---|---|
 | **Model downloads** | When you download a speech model (during setup or on the Models page) or a model for the built-in AI formatter | A normal download request to Hugging Face or Handy's model mirror (`blob.handy.computer`). It reveals your IP address and which model you picked. No audio or text. |
-| **Update checks** | Only after you answer **yes** to "Check for updates automatically?" | A request for `latest.json` from Gooby's releases on GitHub ([gooby-app/releases](https://github.com/gooby-app/releases)); when an update is found, its file is downloaded in the background right away, and installed when you restart. It reveals your IP address and that you use Gooby. No audio or text. |
+| **Update checks** | Only after you answer **yes** to "Check for updates automatically?" | A request for `latest.json` from Gooby's releases on GitHub ([gooby-app/gooby-releases](https://github.com/gooby-app/gooby-releases)); when an update is found, its file is downloaded in the background right away, and installed when you restart. It reveals your IP address and that you use Gooby. No audio or text. |
+| **Usage counts** | Only if, on top of that, you answer **yes** to "Help us count Gooby users?" (Settings → About → Count this copy anonymously) | Once a day, while Gooby is running, one small request to `heygooby.com/ping` (Usage counts, below), separate from the update check, which still goes to GitHub. It says Gooby's version, your system (Windows, macOS or Linux, and the processor type), the month you installed Gooby, the date, and whether it's this copy's first request this week, this month and ever. No ID, audio or text. Cloudflare (for heygooby.com) sees your IP address; we don't keep it. Off until you say yes, and only while update checks are on. |
 | **Cloud AI formatting** | Only if you turn on **Allow cloud AI providers** *and* pick a cloud provider | The text of each dictation (not the audio) goes to the provider you chose, under its own privacy policy, with your Names & words list, the active project's words and the common terms you turned on, so names are spelled right. Off by default. An API key is never sent over plain `http://` to another computer. |
 | **Cloud summaries** | Only if, on top of that, you turn on **Also with cloud providers** under AI formatting → Summaries | The text of every recording (not the audio), including notes and short dictations the formatter skips, plus the names of your projects, so it can write a title, summary, action items and suggested tags and project. Off by default. |
+| **Cloud calendars** | Only if you turn on **Allow cloud calendars** (Settings → Calendar) *and* connect iCloud, a CalDAV server, Google Calendar or Outlook | Each reminder's title and time (details below) |
 | **Links you click** | When you click a link in the app | It opens in your browser. Gooby itself sends nothing. |
 
 Nothing else talks to the network. The built-in AI formatter runs on your own
@@ -33,11 +39,56 @@ Ollama) and Apple Intelligence unless you opt in to cloud providers. Requests
 to these formatters on your computer never go through a proxy, even one set
 with `HTTP_PROXY` or `ALL_PROXY`.
 
-First-run setup offers Ollama, a separate free app, as an AI formatter. To see
-whether it's installed, Gooby asks the Ollama app on your own computer
+Settings → AI formatting can use Ollama, a separate free app, as an AI
+formatter if you already have it (setup never asks for it). To see whether
+it's installed, Gooby asks the Ollama app on your own computer
 (`127.0.0.1:11434`); if you choose it, Gooby asks Ollama to download a model,
 and Ollama does the downloading. Ollama's own "cloud" models would send your
-text to Ollama's servers, so Gooby never offers them.
+text to Ollama's servers, so Gooby never offers them. When Ollama is your
+formatter and isn't running, Gooby starts it on your computer and closes it
+when you quit Gooby. Gooby also asks the Ollama on your computer (127.0.0.1
+only, never through a proxy) whether it's running, to say who formats your
+dictations: while Settings → AI formatting is open, when you ask "Gooby, what
+formatting are you using?", and after a dictation the AI didn't format.
+Nothing else is sent.
+
+Reminders ("Gooby, remind me …") stay on your computer, in Gooby's own
+calendar. To put one on your phone without any cloud, open it in the Library
+and use **On your phone**: Gooby draws a QR code on your screen and sends
+nothing; your phone's camera reads it and adds the reminder to the phone's
+own calendar, which may then sync it to iCloud or Google, as that phone is
+set up to.
+
+Gooby sends a reminder to no outside calendar unless you turn on **Allow
+cloud calendars** in Settings → Calendar (off by default), connect one, and
+leave it switched on. A calendar that's switched off gets nothing, not even
+changes; turning the switch off stops everything, also for reminders you
+change or delete later. Calendars you connected are kept while it's off,
+with their passwords in your system's password store, unused, until you
+disconnect them. With it on:
+
+- **iCloud or another CalDAV calendar:** Gooby sends each reminder (its
+  title, time and alert) to that server as soon as it's added, including a
+  reminder you just said ("Gooby, remind me …"), signed in with the user
+  name and password you gave, and only over https (or to a server on your
+  own computer). Changing or deleting the reminder in the Library, or Undo,
+  changes or deletes it there. Connecting also asks the server which
+  calendars you have. The password (for iCloud, an app-specific one, never
+  your Apple ID password) is kept in your system's password store, like API
+  keys. If you turned off Gooby's calendar and no calendar could take a
+  reminder (you're offline, or the server failed), Gooby keeps it in its own
+  calendar so you can send it again from the Library; once it's sent, that
+  copy is deleted.
+- **Google Calendar or Outlook:** when you press Add on a note, or click
+  their button on Gooby's "Added" message or in the Library, Gooby opens
+  their page in your browser with the reminder's title and time in the
+  address, so your browser sends them to Google or Microsoft as it loads the
+  page. It's added to your calendar there only when you save it. A reminder
+  you just said never opens it by itself.
+- **Your calendar app:** the reminder is written as a calendar file in
+  Gooby's cache folder (readable only by you; each one replaces the last)
+  and opened in your default calendar app, which may sync it to iCloud,
+  Google or Outlook.
 
 ## What's stored on your computer
 
@@ -50,10 +101,13 @@ Everything is kept in Gooby's data folder:
 | macOS | `~/Library/Application Support/com.gooby.dictation` |
 
 - `history.db`: your dictations' text, titles, notes, tags and projects,
-  the name of the app each was typed into ("Slack"), and the AI's summary,
+  the name of the app each was typed into ("Slack"), what formatted each
+  (Inky, the rules, "as said", or the AI model's name), and the AI's summary,
   action items and suggested tags and project for each (Summaries, written
   by your AI formatter; on your computer unless you allowed a cloud
-  provider for them).
+  provider for them). Also the reminders you added to Gooby's calendar
+  (their title and time); they're sent only to the calendars you switched on
+  (Cloud calendars, above).
 - `history-before-update.db`: a copy of `history.db` made just before an
   update changes its layout, so nothing is lost if that goes wrong. Only the
   newest copy is kept, and Gooby deletes it a week after the update, so
@@ -74,12 +128,16 @@ Everything is kept in Gooby's data folder:
   speech models other apps put in that cache, and deleting one in Gooby
   removes it from there.
 - `formatter-models/`: models for the built-in AI formatter.
-- `settings_store.json`: your settings. API keys you enter for cloud providers
-  are kept in your system's password store instead (Windows Credential
-  Manager, macOS Keychain, or the Secret Service keyring on Linux); only where
-  none is available, or in portable installs, are they kept in this file.
+- `settings_store.json`: your settings (with, for usage counts, the month
+  you installed Gooby, whether it was new then, and the day it was last
+  counted). API
+  keys you enter for cloud providers are kept in your system's password
+  store instead (Windows Credential Manager, macOS Keychain, or the Secret
+  Service keyring on Linux); only where none is available, or in portable
+  installs, are they kept in this file.
   If you give your name and email at setup (optional), they're kept here as
-  snippets, and nowhere else.
+  snippets, and nowhere else. The calendars you connected (server, user name
+  and calendar, not the password) are kept here too.
 - `remote-desktop-token` (Linux on Wayland only): lets Gooby type into other
   apps without your desktop asking again. Revoke it in your desktop's privacy
   settings or delete the file.
@@ -121,6 +179,10 @@ the start-at-login entry; on macOS also what macOS keeps for the app in
 Microphone and Accessibility permissions. Keeping your data keeps the API
 keys and, on macOS, those permissions too. On Linux, start at login is
 `~/.config/autostart/Gooby.desktop`; once Gooby is gone it does nothing.
+An AppImage started without an app menu entry adds one, so the desktop shows
+its icon: `~/.local/share/applications/gooby.desktop` and the icon in
+`~/.local/share/icons/hicolor/` (128 and 256 px). Removing everything deletes
+them, and so does `install-linux.sh --uninstall`.
 Settings → Storage removes old audio, unused models, logs and caches, or
 everything Gooby keeps, in one step.
 
@@ -187,10 +249,46 @@ computer (Gooby's own or Ollama), so it can show what turning it on would
 cost, but never a cloud one. If it's Ollama, the test unloads the model,
 loads it again and puts it back as it was found.
 
+## Usage counts
+
+So we know how many people use Gooby, which versions, and how long they keep
+it, heygooby.com keeps these counters, nothing more:
+
+- **Downloads:** for each day, installer (Windows, macOS, Linux AppImage or
+  .deb) and version, how many people used the website's download buttons.
+  To count a person once a day per file, and to leave out bots, the site
+  keeps a one-way hash of your IP address, browser and the file, mixed with
+  a random value made each day (UTC). The value and that day's hashes are
+  deleted after the day ends, as soon as the site is next used (a download,
+  a counted copy or the owners' stats page). While the day's value exists,
+  someone with access to the database could in principle match a hash to an
+  IP address by trying them all; once it's deleted, nobody can, and one
+  day's visitors can't be linked to another's. We never try.
+- **Copies in use**, only from copies whose user said yes to being counted:
+  for each day and Gooby version, how many copies were counted that day; for
+  each week and version, how many that week; for each month, install month
+  and system, how many that month; and for each day, how many copies were
+  counted for the first time. Versions that aren't released yet (test and
+  developer builds) aren't counted.
+
+Each is only a number per group, with no IP address, ID or cookie (the
+download hashes above last about a day), and a day is never stored next to a
+copy's system or install month. While Gooby has few users, a group (such as
+one day's new installs) can still be just a few people, so we only use these
+numbers to see overall trends. Cloudflare's database keeps its own backups of
+them, and of the download hashes and daily values, for up to 30 days.
+
+To be counted, Gooby keeps three settings on your computer
+(`settings_store.json`): the month you installed it, whether it was new then,
+and the day it was last counted. Say no, turn off Count this copy
+anonymously, or turn off update checks, and your copy is no longer counted. GitHub also counts how often
+each release file is downloaded, as it does for every project.
+
 ## The website
 
-heygooby.com has no cookies, analytics or trackers, and loads nothing from
-other companies. It's served by Cloudflare, which handles your IP address and
+heygooby.com has no cookies or trackers for visitors (the owners' stats
+page sets one in the owners' own browsers), and loads nothing from other
+companies. It counts downloads (Usage counts, above). It's served by Cloudflare, which handles your IP address and
 browser details to deliver the page and protect it from attacks, under
 [Cloudflare's privacy policy](https://www.cloudflare.com/privacypolicy/). We
 don't keep those logs. Downloads and this policy come from GitHub, under
@@ -220,8 +318,9 @@ exercise most of these yourself, at any time:
 - **Delete it:** delete recordings in the Library, or Settings → Storage →
   Remove all Gooby data, which also removes the API keys from your system's
   password store.
-- **Withdraw consent:** turn off update checks, cloud AI providers or cloud
-  summaries in Settings; nothing more is sent from then on.
+- **Withdraw consent:** turn off update checks, Count this copy
+  anonymously, cloud AI providers or cloud summaries in Settings; nothing
+  more is sent from then on.
 
 What you sent to a cloud AI provider is held by that provider; ask them. If
 you write to us (email, GitHub issues, Discord), we keep the message only as
@@ -245,7 +344,7 @@ change ever means something new leaves your computer, Gooby asks you first.
 ## Questions
 
 Write to [hello@heygooby.com](mailto:hello@heygooby.com), or open an issue on
-[GitHub](https://github.com/gooby-app/releases/issues). To report a security
+[GitHub](https://github.com/gooby-app/gooby-releases/issues). To report a security
 problem privately, see [SECURITY.md](SECURITY.md).
 
 ---

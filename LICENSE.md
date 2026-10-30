@@ -24,7 +24,7 @@ You may not:
 
 - sell, rent, lend or sublicense Gooby, or distribute copies of it, except by
   pointing people to our official downloads (heygooby.com and
-  github.com/gooby-app/releases);
+  github.com/gooby-app/gooby-releases);
 - reverse engineer, decompile or disassemble Gooby, except where the law
   allows it regardless of this license;
 - remove or change any copyright, license or attribution notices;

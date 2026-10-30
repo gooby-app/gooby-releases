@@ -12,7 +12,7 @@ and updates don't ask again.
 - [Why isn't Gooby signed?](#why-isnt-gooby-signed)
 
 Download the installer from [heygooby.com](https://heygooby.com/#download) or
-the [latest release](https://github.com/gooby-app/releases/releases/latest).
+the [latest release](https://github.com/gooby-app/gooby-releases/releases/latest).
 
 ## Windows
 
@@ -41,7 +41,7 @@ rather keep it on, Gooby can't run on that PC until it's signed.
 **Your antivirus removed the file?** New apps that aren't signed sometimes get
 flagged. Please don't turn your antivirus off; tell us in
 [Discord](https://heygooby.com/discord) or an
-[issue](https://github.com/gooby-app/releases/issues) which antivirus it was.
+[issue](https://github.com/gooby-app/gooby-releases/issues) which antivirus it was.
 
 ## macOS
 
@@ -75,7 +75,7 @@ No warnings on Linux. One command installs Gooby just for you, with an
 app-menu entry, in a place where updates can replace it (no sudo):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/gooby-app/releases/main/install-linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/gooby-app/gooby-releases/main/install-linux.sh | bash
 ```
 
 Or install a file yourself:
@@ -99,7 +99,7 @@ can't tell, so it asks you.
 What keeps you safe instead:
 
 - Every installer is published only on
-  [gooby-app/releases](https://github.com/gooby-app/releases/releases) (and
+  [gooby-app/gooby-releases](https://github.com/gooby-app/gooby-releases/releases) (and
   heygooby.com links there). Each release has a `SHA256SUMS` file, so you can
   check your download matches; the release notes say how.
 - Updates are signed with Gooby's own key, and Gooby refuses any update that
