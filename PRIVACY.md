@@ -1,6 +1,6 @@
 # Gooby privacy policy
 
-Effective 2026-10-29
+Effective 2026-11-01
 
 Gooby is built so that what you say stays on your computer. Speech
 recognition runs locally, nothing is sent anywhere unless you turn it on, and
@@ -19,12 +19,18 @@ installed Gooby). They stay on your computer, where you control them.
 The few things that can reach the internet are listed below, and the ones
 that carry your text are off until you turn them on.
 
+**What we never do:** sell or share personal data, show ads, build profiles
+of people or make automated decisions about them. Since we never receive your
+dictations, we never train anything on them. The "Hey Gooby" wake word was
+trained partly on recordings from volunteers who agreed to that use, not on
+anything from Gooby's users.
+
 ## What connects to the internet
 
 | What | When | What's sent |
 |---|---|---|
 | **Model downloads** | When you download a speech model (during setup or on the Models page) or a model for the built-in AI formatter | A normal download request to Hugging Face or Handy's model mirror (`blob.handy.computer`). It reveals your IP address and which model you picked. No audio or text. |
-| **Update checks** | Only after you answer **yes** to "Check for updates automatically?" | A request for `latest.json` from Gooby's releases on GitHub ([gooby-app/gooby-releases](https://github.com/gooby-app/gooby-releases)); when an update is found, its file is downloaded in the background right away, and installed when you restart. It reveals your IP address and that you use Gooby. No audio or text. |
+| **Update checks** | Only after you answer **yes** to "Check for updates automatically?", or when you choose Check for updates yourself | A request for `latest.json` from Gooby's releases on GitHub ([gooby-app/gooby-releases](https://github.com/gooby-app/gooby-releases)); when an update is found, its file is downloaded in the background right away, and installed when you restart. It reveals your IP address and that you use Gooby. No audio or text. |
 | **Usage counts** | Only if, on top of that, you answer **yes** to "Help us count Gooby users?" (Settings → About → Count this copy anonymously) | Once a day, while Gooby is running, one small request to `heygooby.com/ping` (Usage counts, below), separate from the update check, which still goes to GitHub. It says Gooby's version, your system (Windows, macOS or Linux, and the processor type), the month you installed Gooby, the date, and whether it's this copy's first request this week, this month and ever. No ID, audio or text. Cloudflare (for heygooby.com) sees your IP address; we don't keep it. Off until you say yes, and only while update checks are on. |
 | **Cloud AI formatting** | Only if you turn on **Allow cloud AI providers** *and* pick a cloud provider | The text of each dictation (not the audio) goes to the provider you chose, under its own privacy policy, with your Names & words list, the active project's words and the common terms you turned on, so names are spelled right. Off by default. An API key is never sent over plain `http://` to another computer. |
 | **Cloud summaries** | Only if, on top of that, you turn on **Also with cloud providers** under AI formatting → Summaries | The text of every recording (not the audio), including notes and short dictations the formatter skips, plus the names of your projects, so it can write a title, summary, action items and suggested tags and project. Off by default. |
@@ -41,9 +47,8 @@ with `HTTP_PROXY` or `ALL_PROXY`.
 
 Settings → AI formatting can use Ollama, a separate free app, as an AI
 formatter if you already have it (setup never asks for it). To see whether
-it's installed, Gooby asks the Ollama app on your own computer
-(`127.0.0.1:11434`); if you choose it, Gooby asks Ollama to download a model,
-and Ollama does the downloading. Ollama's own "cloud" models would send your
+it's installed and which models it has, Gooby asks the Ollama app on your own
+computer (`127.0.0.1:11434`). Ollama's own "cloud" models would send your
 text to Ollama's servers, so Gooby never offers them. When Ollama is your
 formatter and isn't running, Gooby starts it on your computer and closes it
 when you quit Gooby. Gooby also asks the Ollama on your computer (127.0.0.1
@@ -145,7 +150,8 @@ Everything is kept in Gooby's data folder:
 Logs (what the app was doing, for troubleshooting) are kept in `logs/` in the
 data folder on Linux, `%LOCALAPPDATA%\com.gooby.dictation\logs` on Windows,
 and `~/Library/Logs/com.gooby.dictation` on macOS. They leave out what you
-said. Developer mode's Logs panel also shows this session's dictations and
+said. Each log is kept to about 500 KB; when it's full, Gooby starts it again
+and the old text is deleted. Developer mode's Logs panel also shows this session's dictations and
 formatted text, kept in memory only and gone when Gooby quits, so read what
 you copy from it before you share it. Saved `.txt` files go to
 `transcripts/` in the data folder (on Windows, in
@@ -262,21 +268,26 @@ it, heygooby.com keeps these counters, nothing more:
   deleted after the day ends, as soon as the site is next used (a download,
   a counted copy or the owners' stats page). While the day's value exists,
   someone with access to the database could in principle match a hash to an
-  IP address by trying them all; once it's deleted, nobody can, and one
-  day's visitors can't be linked to another's. We never try.
+  IP address by trying them all. Cloudflare's backups (below) hold the value
+  and hashes for up to 30 days; after that nobody can match a hash, or link
+  one day's visitors to another's. We never try.
 - **Copies in use**, only from copies whose user said yes to being counted:
   for each day and Gooby version, how many copies were counted that day; for
   each week and version, how many that week; for each month, install month
   and system, how many that month; and for each day, how many copies were
   counted for the first time. Versions that aren't released yet (test and
-  developer builds) aren't counted.
+  developer builds) aren't counted, except that any version is if the site
+  can't reach GitHub to check at that moment.
 
 Each is only a number per group, with no IP address, ID or cookie (the
-download hashes above last about a day), and a day is never stored next to a
+download hashes above last about a day in the live database, up to 30 days in
+backups), and a day is never stored next to a
 copy's system or install month. While Gooby has few users, a group (such as
 one day's new installs) can still be just a few people, so we only use these
-numbers to see overall trends. Cloudflare's database keeps its own backups of
-them, and of the download hashes and daily values, for up to 30 days.
+numbers to see overall trends. We keep the counters for as long as Gooby is
+around; nothing deletes them on a schedule. Cloudflare's database keeps its own
+backups of them, and of the download hashes and daily values, for up to 30
+days.
 
 To be counted, Gooby keeps three settings on your computer
 (`settings_store.json`): the month you installed it, whether it was new then,
@@ -288,7 +299,10 @@ each release file is downloaded, as it does for every project.
 
 heygooby.com has no cookies or trackers for visitors (the owners' stats
 page sets one in the owners' own browsers), and loads nothing from other
-companies. It counts downloads (Usage counts, above). It's served by Cloudflare, which handles your IP address and
+companies. The colors you pick there are saved in your own browser and never
+sent anywhere. Do Not Track and Global Privacy Control change nothing here:
+the site works the same either way, and downloads are counted as described. It
+counts downloads (Usage counts, above). It's served by Cloudflare, which handles your IP address and
 browser details to deliver the page and protect it from attacks, under
 [Cloudflare's privacy policy](https://www.cloudflare.com/privacypolicy/). We
 don't keep those logs. Downloads and this policy come from GitHub, under
@@ -299,7 +313,35 @@ don't keep those logs. Downloads and this policy come from GitHub, under
 When you use something outside Gooby through it (a cloud AI provider you
 picked, Ollama, Hugging Face for model downloads, GitHub for updates, our
 Discord server), that service handles what it receives under its own privacy
-policy, not this one.
+policy, not this one. Whether a cloud AI provider keeps your text, or trains
+its models on it, depends on its terms and your account's settings there:
+check them before you turn one on.
+
+Cloudflare (for heygooby.com) and GitHub are US companies that handle data
+around the world, under their own safeguards for moving it between countries
+(such as the EU's Standard Contractual Clauses). We're in India.
+
+## Donations
+
+Giving is optional and goes through [Buy Me a Coffee](https://buymeacoffee.com/)
+or [Razorpay](https://razorpay.com/), which take your payment under their own
+privacy policies. We never see your card or bank details. We do see what they
+show a recipient, such as your name or email, the amount and the date, and what
+you tell us if you ask for a refund. We keep those records as long as we need
+them for our accounts and as the law requires.
+
+## Why we may (EU and UK)
+
+- **Update checks, usage counts, cloud AI and cloud calendars:** your
+  consent, given in Gooby and taken back in its Settings at any time.
+- **Counting downloads and running heygooby.com:** our legitimate interests,
+  in knowing how many people download Gooby without tracking anyone, and in
+  keeping the site up and safe.
+- **Messages you send us:** our legitimate interest in answering you.
+- **Donations:** our legitimate interest in receiving gifts and handling
+  refunds, and any legal duty to keep financial records.
+
+You never have to give us anything: Gooby works with all of these off.
 
 ## Your rights
 
@@ -319,12 +361,15 @@ exercise most of these yourself, at any time:
   Remove all Gooby data, which also removes the API keys from your system's
   password store.
 - **Withdraw consent:** turn off update checks, Count this copy
-  anonymously, cloud AI providers or cloud summaries in Settings; nothing
+  anonymously, cloud AI providers, cloud summaries or cloud calendars in
+  Settings; nothing
   more is sent from then on.
 
 What you sent to a cloud AI provider is held by that provider; ask them. If
 you write to us (email, GitHub issues, Discord), we keep the message only as
-long as we need it to answer, and you can ask us to delete it. For any
+long as we need it to answer, and you can ask us to delete it. Email to us
+passes through Cloudflare's mail routing. Testers who send us logs or
+screenshots can ask us to delete those too. For any
 request or complaint, write to
 [hello@heygooby.com](mailto:hello@heygooby.com); we answer within 30 days.
 You may also complain to your data protection authority (in India, the Data
@@ -332,14 +377,17 @@ Protection Board of India).
 
 ## Children
 
-Gooby isn't made for children under 13, and we don't knowingly receive
-anyone's personal data, children's included.
+Gooby isn't made for children under 13, and apart from what people choose to
+send us, or give through a donation, we don't knowingly receive anyone's
+personal data, children's included.
 
 ## Changes to this policy
 
 If this policy changes, the new version is published with the release that
 needs it, with a new effective date, and listed in the release notes. If a
 change ever means something new leaves your computer, Gooby asks you first.
+Earlier versions are in
+[this file's history](https://github.com/gooby-app/gooby-releases/commits/main/PRIVACY.md).
 
 ## Questions
 

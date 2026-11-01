@@ -5,6 +5,24 @@ versions were pre-alpha, for the developers only.
 
 ## Coming in the next version
 
+### Security
+
+- **Ollama's cloud models** are no longer listed in Settings → AI formatting.
+  They send your text to Ollama's servers, and the privacy policy says Gooby
+  never offers them.
+
+### Changed
+
+- **Setup** links Gooby's license and privacy policy under its start button.
+- **Privacy policy**: it now says what we never do, the EU and UK legal
+  reasons, where data goes and how long it's kept, including 30-day backups of
+  the download counts, and covers donations and cloud AI providers' training.
+
+### Fixed
+
+- **Colors**: placeholder text, and a few labels in the Game Boy palette,
+  are easier to read, and so is warning text in light mode.
+
 ## 0.0.8 - 2026-10-30
 
 Reminders and your own calendars by voice, the Library by voice, emails and
