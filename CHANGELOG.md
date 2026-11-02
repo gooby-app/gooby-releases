@@ -13,6 +13,12 @@ versions were pre-alpha, for the developers only.
 
 ### Changed
 
+- **Updates show how they're going**: as soon as a new version is found, a
+  card shows it downloading, with a progress bar and how many MB are in, then
+  checking the download, then installing. About and the bottom bar show the
+  same. With automatic updates on, Gooby looks for one 5 seconds after it
+  opens instead of 30, and if it couldn't get through (no internet yet), it
+  tries again within minutes instead of six hours.
 - **Gooby's logo** is now the creature with the pixel word "Gooby" under it: in the app, on the app icon, in the installer and on the website. The smallest icons and the tray keep the creature alone, since the word can't be read there.
 - **Setup** links Gooby's license and privacy policy under its start button.
 - **Privacy policy**: it now says what we never do, the EU and UK legal
@@ -23,6 +29,19 @@ versions were pre-alpha, for the developers only.
 
 - **Colors**: placeholder text, and a few labels in the Game Boy palette,
   are easier to read, and so is warning text in light mode.
+- **Restart to update** no longer freezes Gooby on Windows ("Not
+  responding") while the installer starts. Gooby first stops the microphone,
+  "Hey Gooby" and its models, and puts them back if the update can't
+  install. No dictation starts while an update installs.
+- **Update failed messages** have a proper title instead of a placeholder.
+
+### Known issues
+
+- **Updating from 0.0.7 or 0.0.8** still uses their old update code, so on
+  Windows Gooby can say "Not responding" for a while after Restart now. Wait
+  for the installer to appear, or download the new version from
+  heygooby.com and install it over the old one. Your recordings and settings
+  are kept either way, and later updates don't have this problem.
 
 ## 0.0.8 - 2026-10-30
 

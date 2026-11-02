@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="212" viewBox="0 0 720 212" role="img" aria-label="Memory Gooby uses (less is better)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title>Memory Gooby uses (less is better)</title>
+<text x="0" y="20" font-size="16" font-weight="600" fill="#1f2328">Memory Gooby uses (less is better)</text>
+<rect x="0" y="34" width="12" height="12" rx="3" fill="#8c959f"/>
+<text x="18" y="45" font-size="13" fill="#59636e">v0.0.7</text>
+<rect x="87" y="34" width="12" height="12" rx="3" fill="#2a78d6"/>
+<text x="105" y="45" font-size="13" fill="#59636e">v0.0.8 (this release)</text>
+<text x="0" y="78" font-size="13" fill="#1f2328">Memory while waiting</text>
+<line x1="0.5" y1="84" x2="0.5" y2="120" stroke="#d1d9e0"/>
+<path d="M0 84H229.28763546755536A4 4 0 0 1 233.28763546755536 88V96A4 4 0 0 1 229.28763546755536 100H0Z" fill="#8c959f"/>
+<text x="239.28763546755536" y="97" font-size="12" fill="#1f2328">1.3 GB</text>
+<path d="M0 102H251.19716945053872A4 4 0 0 1 255.19716945053872 106V114A4 4 0 0 1 251.19716945053872 118H0Z" fill="#2a78d6"/>
+<text x="261.1971694505387" y="115" font-size="12" fill="#1f2328">1.4 GB</text>
+<text x="0" y="150" font-size="13" fill="#1f2328">Memory while dictating (peak)</text>
+<line x1="0.5" y1="156" x2="0.5" y2="192" stroke="#d1d9e0"/>
+<path d="M0 156H606A4 4 0 0 1 610 160V168A4 4 0 0 1 606 172H0Z" fill="#8c959f"/>
+<text x="616" y="169" font-size="12" fill="#1f2328">3.3 GB</text>
+<path d="M0 174H277.67727020475763A4 4 0 0 1 281.67727020475763 178V186A4 4 0 0 1 277.67727020475763 190H0Z" fill="#2a78d6"/>
+<text x="287.67727020475763" y="187" font-size="12" fill="#1f2328">1.5 GB</text>
+</svg>

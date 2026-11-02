@@ -242,11 +242,15 @@ Every dictation is kept in the Library, with its audio.
   pixel text is softer there.
 - **Tray icon** with Open Gooby, "Listen for “Hey Gooby”", update status and
   quit; it shows when Gooby is recording, transcribing or listening.
-- **Updates**, off until you say yes: signed, installed in the background,
-  applied on restart and never mid-recording.
+- **Updates**, off until you say yes: signed, downloaded in the background
+  with their progress shown from the moment one is found, applied on restart
+  and never mid-recording.
 - **Remembers the window** size and position.
-- **Light in the background**: about 300 MB while idle, and a minute after
-  you close the window it's unloaded to save about 100 MB more.
+- **Quiet in the background**: about 400 MB of memory while idle on a
+  computer with a graphics card, about 1.3 GB without one, since the speech
+  model stays loaded so the first dictation is quick (BENCHMARKS.md has the
+  numbers). A minute after you close the window, the window itself is
+  unloaded to save about 100 MB more.
 - **Interface in 26 languages** (English and 25 translations). Voice
   commands are recognized in English only for now.
 - **Settings search and Help**: find any setting in a few keystrokes; Help

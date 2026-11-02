@@ -300,6 +300,36 @@ pixel-perfect so it's sharp, or in your system's font if you prefer.
 |---|---|
 | ![Settings, Themes: six two-color palettes, and the four overlay looks Classic, Island, Soft and Pixel](screenshots/themes.png) | ![Settings, General: the dictation shortcut, shortcut behavior, Type what I say and Hey Gooby](screenshots/settings.png) |
 
+<!-- bench:start -->
+## How fast is Gooby?
+
+On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.8 types your words **700 ms** after you stop talking (a 20-word sentence, with the settings a fresh install gets).
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="benchmarks/speed-dark.svg">
+  <img src="benchmarks/speed-light.svg" alt="Time from when you stop talking until the text is typed, and the first dictation after starting Gooby, for this release and the one before. Shorter is faster." width="100%">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="benchmarks/memory-dark.svg">
+  <img src="benchmarks/memory-light.svg" alt="Memory Gooby uses while waiting and at its peak while dictating, for this release and the one before." width="100%">
+</picture>
+
+| | v0.0.7 | v0.0.8 | Change |
+|---|---:|---:|---|
+| Stop talking → text typed (20 words) | 1.8 s | 700 ms | 62% faster |
+| Stop talking → text typed (31 words) | 1.8 s | 690 ms | 63% faster |
+| First dictation after starting Gooby | 3.1 s | 630 ms | 79% faster |
+| Start-up, until the window is drawn | 620 ms | 470 ms | 24% faster |
+| Memory while waiting | 1.3 GB | 1.4 GB | 9% more |
+| Memory while dictating (peak) | 3.3 GB | 1.5 GB | 54% less |
+| Words heard right | 100% | 100% | about the same |
+
+Most of the difference is formatting: a fresh install of v0.0.7 tidied your words with an AI model, while v0.0.8 uses Inky, Gooby's own small formatter, which is much quicker. The AI is still there in Settings → AI formatting.
+
+Measured on 2026-11-02 by Gooby's own benchmark on a Linux PC held to those limits; every release is measured the same way, next to the one before. How, and what it can't show: [BENCHMARKS.md](BENCHMARKS.md).
+<!-- bench:end -->
+
 ## Privacy in short
 
 What you say stays on your computer. There's no account and no tracking, and
