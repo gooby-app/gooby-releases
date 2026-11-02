@@ -13,6 +13,7 @@ versions were pre-alpha, for the developers only.
 
 ### Changed
 
+- **Gooby's logo** is now the creature with the pixel word "Gooby" under it: in the app, on the app icon, in the installer and on the website. The smallest icons and the tray keep the creature alone, since the word can't be read there.
 - **Setup** links Gooby's license and privacy policy under its start button.
 - **Privacy policy**: it now says what we never do, the EU and UK legal
   reasons, where data goes and how long it's kept, including 30-day backups of
