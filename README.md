@@ -60,8 +60,9 @@ pricing.
   note to self, insert a snippet, or switch language, project or style.
 - **Your words.** Names, jargon and your country's common terms, spelled your
   way.
-- **A Library of everything you've said.** Every dictation with its audio:
-  search it, star it, file it in projects and tags, see it on a calendar.
+- **A Library of your notes.** Notes and reminders with their audio, and
+  every dictation if you turn that on: search, star, file them in projects
+  and tags, see them on a calendar.
 - **Set up in one click.** Gooby picks the speech model and AI formatter that
   suit your computer and finds your microphone.
 - **Yours to style.** Light or dark, six two-color palettes, four overlay
@@ -115,6 +116,12 @@ code editor your words exactly as said. Each recording in the Library shows
 where it went ("Typed into Slack"). (Not on Wayland, where the desktop
 doesn't say which app is in front.)
 
+**It fits the text that's already there:** dictate into a box that already
+has text and Gooby picks up where it stops: no capital in the middle of a
+sentence, the next item of your list in the same style, no second greeting
+in an email. It reads the text around the cursor on your computer, never in
+password fields or terminals, and keeps none of it.
+
 **Short dictations don't wait for the AI:** a few words are tidied by simple
 rules ("question mark", "new line", a capital letter) and typed at once.
 
@@ -135,7 +142,7 @@ Anything Gooby doesn't recognize is typed as you said it.
 
 | Say | What happens |
 |---|---|
-| "Gooby, make this shorter" | With text selected in any app: rewrites it in place. "Fix the grammar", "translate this into French" and "format this" work too; Ctrl+Z (Cmd+Z) undoes it. |
+| "Gooby, make this shorter" | With text selected in any app: rewrites it in place. "Fix the grammar", "translate this into French" and "format this" work too, and short ones like these work without "Gooby," while text is selected; Ctrl+Z (Cmd+Z) undoes it. |
 | "Gooby, note: call the dentist" | Kept in the Library as a note to self; nothing is typed. "Note to self …" works too. |
 | "… Gooby, cancel" | Throws this dictation away. "Never mind" and "scratch that" work too. |
 | "Gooby, insert my signature" | Types a snippet you saved (a signature, an address, a meeting link) exactly. |
@@ -158,6 +165,10 @@ type; keep a note instead** (Settings → General → Advanced; Linux and Window
 same goes for any app: with a button, a list or the desktop in focus, what you
 say is saved instead of lost. With the overlay turned off, what a command
 did shows as a system notification.
+
+You can also type a note in the Library (the pen button, or Ctrl/Cmd+N).
+Gooby reads it the same way: "remind me to …", "put it in the Acme project"
+and the commands above work there, and it suggests them as you type.
 
 #### "Hey Gooby" (experimental)
 
@@ -187,10 +198,12 @@ Settings → Words teaches Gooby how you spell things:
 |---|---|
 | ![Settings, Words: names and words such as Priya, Acme and Kubernetes, and snippets for an email, a signature and a meeting link](screenshots/words.png) | ![Settings, Words, Common terms: packs of acronyms and of United States terms switched on, with packs for other countries below](screenshots/common-terms.png) |
 
-### A Library of everything you've said
+### A Library of your notes
 
-Every dictation is kept with its audio, so nothing you said is lost, even if
-the app you were typing into wasn't ready.
+Notes, reminders and anything Gooby couldn't type are kept with their audio,
+so nothing you said is lost, even if the app you were typing into wasn't
+ready. To keep every dictation, turn on Settings → Storage → Keep dictations
+typed into other apps.
 
 <p align="center">
   <img src="screenshots/library.png" alt="The Library: one column with All recordings, Favorites, Notes to self, projects and nested tags, and a launch checklist open on the right with its summary and action items" width="100%">
@@ -274,11 +287,12 @@ mirror) and come with their own licenses.
 | Model | Download | Notes |
 |---|---|---|
 | Gemma 3 1B | 770 MB | English only, for computers without much memory |
-| Qwen 2.5 1.5B | 1.0 GB | Many languages; the pick at setup without a graphics card |
-| Gemma 3 4B | 2.3 GB | The pick at setup with a graphics card |
+| Qwen 2.5 1.5B | 1.0 GB | Many languages, for computers without a graphics card |
+| Gemma 3 4B | 2.3 GB | For computers with a graphics card |
 | Gemma 3 12B | 6.8 GB | Best results; Gooby recommends it when your graphics card has room |
 
-Setup downloads at most the 2.3 GB model; bigger ones are opt-in.
+Setup downloads none of them: Inky, which comes with Gooby, formats from the
+first dictation. Each is one click in Settings → AI formatting.
 
 <img src="screenshots/ai-formatting.png" alt="Settings, AI formatting: the AI formatting switch on, the built-in provider, and Gemma 3 1B, Qwen 2.5 1.5B, Gemma 3 4B and Gemma 3 12B to download, Gemma 3 12B marked best for this computer" width="100%">
 
@@ -303,7 +317,7 @@ pixel-perfect so it's sharp, or in your system's font if you prefer.
 <!-- bench:start -->
 ## How fast is Gooby?
 
-On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.8 types your words **700 ms** after you stop talking (a 20-word sentence, with the settings a fresh install gets).
+On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.9 types your words **560 ms** after you stop talking (a 20-word sentence, with the settings a fresh install gets).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="benchmarks/speed-dark.svg">
@@ -315,19 +329,17 @@ On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.8 
   <img src="benchmarks/memory-light.svg" alt="Memory Gooby uses while waiting and at its peak while dictating, for this release and the one before." width="100%">
 </picture>
 
-| | v0.0.7 | v0.0.8 | Change |
+| | v0.0.8 | v0.0.9 | Change |
 |---|---:|---:|---|
-| Stop talking → text typed (20 words) | 1.8 s | 700 ms | 62% faster |
-| Stop talking → text typed (31 words) | 1.8 s | 690 ms | 63% faster |
-| First dictation after starting Gooby | 3.1 s | 630 ms | 79% faster |
-| Start-up, until the window is drawn | 620 ms | 470 ms | 24% faster |
-| Memory while waiting | 1.3 GB | 1.4 GB | 9% more |
-| Memory while dictating (peak) | 3.3 GB | 1.5 GB | 54% less |
+| Stop talking → text typed (20 words) | 550 ms | 560 ms | about the same |
+| Stop talking → text typed (31 words) | 610 ms | 600 ms | about the same |
+| First dictation after starting Gooby | 590 ms | 640 ms | 8% slower |
+| Start-up, until the window is drawn | 370 ms | 350 ms | about the same |
+| Memory while waiting | 1.4 GB | 1.4 GB | about the same |
+| Memory while dictating (peak) | 1.5 GB | 1.5 GB | about the same |
 | Words heard right | 100% | 100% | about the same |
 
-Most of the difference is formatting: a fresh install of v0.0.7 tidied your words with an AI model, while v0.0.8 uses Inky, Gooby's own small formatter, which is much quicker. The AI is still there in Settings → AI formatting.
-
-Measured on 2026-11-02 by Gooby's own benchmark on a Linux PC held to those limits; every release is measured the same way, next to the one before. How, and what it can't show: [BENCHMARKS.md](BENCHMARKS.md).
+Measured on 2026-11-08 by Gooby's own benchmark on a Linux PC held to those limits; every release is measured the same way, next to the one before. How, and what it can't show: [BENCHMARKS.md](BENCHMARKS.md).
 <!-- bench:end -->
 
 ## Privacy in short
@@ -368,10 +380,11 @@ for your system from the
 | **Linux** | Ubuntu 24.04, Debian 13, Fedora 39, Arch or newer, 64-bit | [`Gooby_<version>_amd64.AppImage`](https://heygooby.com/download/appimage), or the [one-command install](#linux) |
 | **Linux** | Ubuntu 22.04, Debian 12, Linux Mint 21 and others built on them, 64-bit | [`Gooby_<version>_amd64.deb`](https://heygooby.com/download/deb) |
 
-**Every system:** a microphone, and up to about 4 GB of disk space for the
-models setup downloads. Gooby picks models that fit your memory, so it runs on
-ordinary laptops; a graphics card makes it faster but isn't needed. On Linux,
-X11 and Wayland both work.
+**Every system:** a microphone, and about 1.5 GB of disk space: Gooby itself
+and the speech model setup downloads (about 700 MB). AI formatting models in
+Settings take more, each with its size shown. Gooby picks models that fit your
+memory, so it runs on ordinary laptops; a graphics card makes it faster but
+isn't needed. On Linux, X11 and Wayland both work.
 
 **Checking a download:** each release has a `SHA256SUMS` file. Compare your
 download with it: `sha256sum -c SHA256SUMS --ignore-missing` on Linux,
@@ -427,7 +440,7 @@ such as Linux Mint 21, use the `.deb`.
 | Shortcut | Windows and Linux | macOS |
 |---|---|---|
 | Start and stop dictating | Ctrl+Alt+Space | Option+Space |
-| Edit the selected text by voice | the dictation shortcut, then "Gooby, make this shorter" | the same |
+| Edit the selected text by voice | the dictation shortcut, then "make this shorter"; or an Edit with voice shortcut you set in Settings → General | the same |
 | Throw the current dictation away | Esc (Linux: "… Gooby, cancel") | Esc |
 | Open or close Settings | Ctrl+, | Cmd+, |
 | Search Settings | Ctrl+F | Cmd+F |

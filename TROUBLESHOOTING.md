@@ -46,7 +46,8 @@ Wayland doesn't let apps listen for keys. Where the desktop supports it (KDE
 Plasma, GNOME 48 and later, Hyprland), Gooby registers its shortcuts with the
 desktop, which asks you to confirm them once. On older desktops (such as GNOME
 46 on Ubuntu 24.04), add a custom shortcut that runs `gooby --toggle-transcription`
-(steps below); Settings shows the same hint.
+(steps below), and one that runs `gooby --toggle-edit-selection` for Edit
+with voice; Settings shows the same hint.
 
 **Other notes:**
 
@@ -326,6 +327,7 @@ Gooby supports command-line flags for controlling a running instance and customi
 ```bash
 gooby --toggle-transcription    # Toggle recording on/off
 gooby --toggle-post-process     # Toggle recording with AI formatting on/off
+gooby --toggle-edit-selection   # Toggle Edit with voice on the selected text
 gooby --cancel                  # Cancel the current operation
 ```
 

@@ -111,7 +111,9 @@ all (or say "Gooby, what can I say?"). Try at least these:
 1. **"Gooby, note: call the dentist tomorrow."** Nothing is typed; the note
    is in the Library.
 2. Select a sentence you typed, then **"Gooby, make this shorter."** It's
-   replaced. Your clipboard should still have what it had before.
+   replaced. Your clipboard should still have what it had before. Select it
+   again and say just **"make it more formal"**, without "Gooby,": it's
+   rewritten too, not typed over.
 3. **"Gooby, formatting off"**, dictate something (it's typed exactly as
    said), then **"Gooby, formatting on"**. Ask **"Gooby, what formatting
    are you using?"**: does the answer match Settings → AI formatting?

@@ -28,9 +28,11 @@ installs just for you.
 
    <img src="screenshots/install-windows-run-anyway.png" alt="The same message after More info, showing App: Gooby_0.0.6_x64-setup.exe, Publisher: Unknown publisher, and the buttons Run anyway and Don't run." width="400">
 
-4. The installer opens. Keep **Normal Installation**, click **Next** through
-   to **Finish**, and Gooby opens and sets itself up. It downloads its models
-   once (2 to 4 GB).
+4. The installer opens. Keep **Normal install**, click **Next** through to
+   **Finish**, and Gooby opens and sets itself up. It downloads its speech
+   model once (about 700 MB). If an older Gooby is already installed, the
+   installer updates it in place and skips that choice; your recordings and
+   settings are kept.
 
 **"Smart App Control blocked an app"** instead, with no Run anyway? Smart
 App Control is a Windows setting that blocks every app that isn't signed, and
@@ -57,7 +59,7 @@ later) on the Macs it runs on, and a **Processor** (Intel) on the others.
 3. Open **System Settings → Privacy & Security** and scroll down to Security.
    Next to "Gooby was blocked", click **Open Anyway**.
 4. macOS asks once more: click **Open Anyway** and enter your password. Gooby
-   opens and sets itself up. It downloads its models once (2 to 4 GB).
+   opens and sets itself up. It downloads its speech model once (about 700 MB).
 5. Allow what Gooby asks for: **Microphone**, and **Accessibility** so it can
    type for you.
 

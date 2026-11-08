@@ -64,8 +64,8 @@ runs on Linux, Windows and macOS.
   clear which one you mean, Gooby asks instead of guessing, and a change
   shows with Undo. A delete only moves it to Recently Deleted.
 - **Stops when you pause**: tap the shortcut to start and Gooby stops on its
-  own once you've been quiet for 3 seconds (Settings → General → Stop after
-  a pause: never, 2, 3, 5 or 10 seconds). Holding the shortcut is never cut
+  own once you've been quiet for 10 seconds, so you can stop to think
+  (Settings → General → Stop after a pause: never, 2, 3, 5 or 10 seconds). Holding the shortcut is never cut
   short. If nothing is heard for 10 seconds, it stops and says so.
 - **Shares the microphone**: Gooby opens it only while you dictate (and
   while "Hey Gooby" listens), and never takes it for itself. If another app
@@ -73,15 +73,23 @@ runs on Linux, Windows and macOS.
   notification, with the overlay off) says what changed.
 - **Edit by voice**: select text anywhere and say "Gooby, make this
   shorter", "fix the grammar", "translate this into French" or "format this";
-  Gooby rewrites the selection in place (Ctrl+Z or Cmd+Z undoes it). Needs
-  an AI formatter.
+  Gooby rewrites the selection in place (Ctrl+Z or Cmd+Z undoes it). A short
+  instruction like these works without "Gooby," too, while text is selected:
+  with nothing selected, it's typed as usual. Or set the **Edit with voice**
+  shortcut (Settings → General; not set until you pick one): whatever you say
+  while it's down is the instruction, never typed. Edits aren't kept in the
+  Library. Needs an AI formatter. On Wayland, browsers and chat apps often
+  don't say what's selected, so there the instruction alone is typed: say
+  "Gooby," first or use the shortcut. On GNOME 46 and older, bind the
+  shortcut as a system one that runs `gooby --toggle-edit-selection`.
 - **Notes to self**: "Gooby, note: …" keeps a dictation in the Library
   without typing it (see Library below).
 - **Reminders**: "Gooby, remind me to call Mom tomorrow at 5" (or "set a
-  reminder …", "schedule a meeting …", "add … to my calendar") or "remind
-  me" anywhere in a dictation is added to the calendar at once (today,
-  tomorrow, weekdays, "the 27th", "June 3rd", "in 20 minutes", "at 3",
-  "noon"). The overlay says "Added: Call Mom" with the day and time; clicking
+  reminder …", "schedule a meeting …", "make a calendar appointment …",
+  "book a dentist appointment …", "add … to my calendar"), "remind me"
+  anywhere in a dictation, or "Make a calendar appointment …" as a sentence
+  of its own, is added to the calendar at once (today, tomorrow, weekdays,
+  "the 27th", "June 3rd", "in 20 minutes", "at 3", "noon"). The overlay says "Added: Call Mom" with the day and time; clicking
   it shows Undo, the note, and Google Calendar or Outlook when they're on. A
   plan said to Gooby ("I need to meet Dave on the 28th") only shows a small
   "Add reminder?" that opens the note. The dictation is typed or saved as
@@ -102,7 +110,9 @@ runs on Linux, Windows and macOS.
   calendar from its camera. Only connected, switched-on calendars are used.
   "Reminders by voice" can be turned off.
 - **"Hey Gooby"** (off by default): start a dictation or a command by voice;
-  it stops two seconds after you stop talking. Setup offers it, and Settings → General and the
+  a short one stops two seconds after you stop talking, and one that has run
+  15 seconds waits for the pause above (5 seconds if that's Never), up to 10
+  minutes; "Gooby, done" ends it at once, and locking the screen drops it. Setup offers it, and Settings → General and the
   tray menu turn it on or off; the tray icon shows a blue dot while it
   listens. It runs on your computer and keeps nothing until it hears its
   name.
@@ -149,6 +159,19 @@ runs on Linux, Windows and macOS.
 - **Formatting that fits the app**: paragraphs in an email, casual in a
   chat, clear prompts for AI assistants, and your words as said in a
   terminal or code editor. Not on Wayland.
+- **Match the text that's already there** (on by default; Settings → AI
+  formatting → Advanced): in a box that already has text, a dictation picks
+  up where it stops. No capital in the middle of a sentence ("and then we
+  left", not "And then we left"), the right space before it, the next item
+  of a list in the box's own style ("- ", "•", or "4." after "3."), no full
+  stop when the sentence goes on after the cursor, and no second greeting or
+  sign-off in an email. Gooby reads up to 2,000 characters before the cursor
+  and 500 after it when you stop recording, through the system's
+  accessibility service, and keeps none of it. Never password fields,
+  terminals, code editors or text you can't edit. The AI formatter sees the
+  last 300 characters only when it's Gooby's own or Ollama on your computer.
+  Apps that don't describe their text to the system (many browsers and
+  Electron apps) are formatted as before.
 
 ![What you say, and what Gooby types after AI formatting](screenshots/formatting.png)
 
@@ -163,7 +186,11 @@ runs on Linux, Windows and macOS.
 
 ## Library
 
-Every dictation is kept in the Library, with its audio.
+Notes, reminders you ask for and dictations Gooby couldn't type (typing off,
+no text box, Gooby's own window in front, or typing failed) are kept in the
+Library, with their audio; voice commands never are. Dictations typed into
+other apps are kept too if you turn on Settings → Storage → Keep dictations
+typed into other apps (off by default).
 
 - **Projects, nested tags (`work/acme`) and favorites**, plus Unsorted and
   Recently Deleted (kept until you empty it).
@@ -180,6 +207,12 @@ Every dictation is kept in the Library, with its audio.
   nowhere to type; keep a note instead" on (off by default; Linux and
   Windows), so does dictating while a button, a list or the desktop has
   focus. They're listed under Notes to self.
+- **Typed notes**: the pen button (or Ctrl/Cmd+N) writes a note without
+  dictating. Saved, it's read like a dictation: "remind me to …" adds a
+  reminder, "put it in the Acme project" files it, a template's name formats
+  it, and it's tidied up like your dictations. What Gooby understands is
+  suggested as you type (Tab or Enter takes it); a snippet's name inserts its
+  text.
 - **Say where it goes**: start with "For the Acme project: …" or end with
   "…put it in Acme" and it's filed there, with the command cut from the text.
 - **Summaries**: after each recording, while Gooby is idle, the AI formatter
@@ -209,6 +242,15 @@ Every dictation is kept in the Library, with its audio.
 
 ## Around the app
 
+- **Command line**: Ctrl+` (or Ctrl+J) opens a terminal-style line at the
+  bottom. Commands are in capitals and suggested as you type (`RE` →
+  `REMIND`, Tab to take it), with every choice completed from what you have:
+  pages, projects, downloaded models. `REMIND`, `NOTE`, `GO`, `FORMAT`,
+  `SOUNDS`, `WAKE`, `PROJECT`, `MODEL SPEECH|FORMAT`, `OPEN`, `SEARCH`,
+  `UPDATE`, `HELP` and `CLEAR`; the arrows walk your history. When a command
+  needs something that isn't set up, it says what to type to fix it. Nothing
+  is shown until you type (`HELP` lists everything); Settings → General →
+  Command line turns it off.
 - **Command menu**: Ctrl+K (Cmd+K on a Mac) finds any Settings page or
   setting, the Library, and the common actions (formatting on or off,
   "Hey Gooby" on or off, check for updates, the tour), with their shortcuts.
@@ -260,7 +302,8 @@ Every dictation is kept in the Library, with its audio.
   found, model loaded, what was heard, formatted and typed where), with Copy
   to share it. Turning it on after a problem still shows the problem.
 - **Command-line flags** for scripts and window managers:
-  `--toggle-transcription`, `--toggle-post-process`, `--cancel`,
+  `--toggle-transcription`, `--toggle-post-process`,
+  `--toggle-edit-selection`, `--cancel`,
   `--start-hidden`, `--no-tray` and `--debug`.
 - **Portable mode** on Windows keeps everything next to the app.
 

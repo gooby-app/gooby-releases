@@ -5,14 +5,85 @@ versions were pre-alpha, for the developers only.
 
 ## Coming in the next version
 
-### Security
+## 0.0.9 - 2026-11-08
 
-- **Ollama's cloud models** are no longer listed in Settings → AI formatting.
-  They send your text to Ollama's servers, and the privacy policy says Gooby
-  never offers them.
+Dictations that fit the text already in the box, editing selected text
+by voice, typed notes and a command line. Dictations typed into another app
+now stay there instead of being kept in the Library too, a tapped dictation
+gives you 10 seconds to think, and running the Windows installer again
+updates or repairs the copy you have.
+
+### Added
+
+- **Match the text that's already there**: a dictation into a box that
+  already has text picks up where it stops: no capital in the middle of a
+  sentence, the right space before it, the next item of a list in the box's
+  own style ("- ", "•", or "4." after "3."), no full stop when the sentence
+  goes on after the cursor, and no second greeting or sign-off in an email.
+  Gooby reads the text around the cursor on your computer when you start
+  recording, never in password fields, terminals or code editors, and keeps
+  none of it. An AI formatter sees the end of it only when it runs on your
+  computer (Gooby's own or Ollama), never a cloud one. On by default; turn it
+  off in Settings → AI formatting → Advanced.
+- **Edit with voice, without "Gooby,"**: with text selected, a short
+  instruction like "make this shorter", "fix the grammar" or "translate this
+  into French" now rewrites the selection instead of being typed over it.
+  Anything else, or with nothing selected, is typed as before. Or set the new
+  **Edit with voice shortcut** in Settings → General (it starts unset): press
+  it, say what to change, and what you say is never typed. Edits aren't kept
+  in the Library. Both need an AI model in AI formatting. On GNOME 46 and
+  older on Wayland, bind `gooby --toggle-edit-selection` as a system
+  shortcut instead.
+- **More ways to add to your calendar**: "make a calendar appointment …",
+  "create a calendar entry …", "book a doctor's appointment …" and "set up a
+  team meeting …" add it like "remind me …" does, and so does a sentence of
+  its own inside a dictation, such as "Make a calendar appointment for Friday
+  at 3." ("I'll create a calendar event …" in an email isn't asking.)
+- **Command line**: Ctrl+` (or Ctrl+J) opens a command line at the bottom,
+  like a terminal. Commands are in capitals and suggested from the first
+  letter you type (`RE` shows `REMIND`; Tab takes it), and `HELP` lists them
+  all. `REMIND buy baby wipes tomorrow` adds a reminder, `NOTE …` keeps a
+  note, `GO calendar` opens a page, `FORMAT`, `SOUNDS` and `WAKE` take `ON` or
+  `OFF`, `PROJECT` sets the project, `MODEL SPEECH` and `MODEL FORMAT` switch
+  models (completed from the ones you've downloaded; add `DOWNLOAD` to open
+  the page), `OPEN`, `SEARCH` and `UPDATE` work the Library and updates. If
+  something isn't set up (no calendar for a reminder, no downloaded model),
+  it says so and tells you what to type to set it up. It shows nothing until
+  you type (`HELP` lists everything), and Settings → General → Command line
+  turns it off.
+- **Inky is recommended in setup, not forced**: you can pick typing exactly
+  as said instead. If you updated and aren't using Inky, a card tells you
+  Gooby now has its own offline formatter and lets you try it or keep yours.
+- **Typed notes**: write a note in the Library without dictating (the pen
+  button, Ctrl+N or Cmd+N, or "New note" in the command menu). Gooby reads it
+  like a dictation when you save it: "remind me to …" adds a reminder, "put
+  it in the Acme project" files it, "Gooby, SOAP note: …" uses that
+  template, and it's tidied up like your dictations.
+- **Suggestions while you type a note**: type "re" and Gooby offers
+  "remind me to", or start your name or email and it offers the whole thing.
+  Tab or Enter takes one. Nothing else is suggested.
 
 ### Changed
 
+- **Typed dictations stay in the app you typed them into**: a dictation
+  typed into another app is no longer kept in the Library too. Notes,
+  reminders you ask for and dictations Gooby couldn't type are kept as
+  before, and recordings you already have aren't touched. To keep typed ones
+  as well, turn on Settings → Storage → Keep dictations typed into other
+  apps. Copy Last Transcript in the tray and "Gooby, type that" still have
+  the last one until Gooby quits.
+- **Room to think mid-dictation**: a tapped dictation now stops after 10
+  seconds of quiet instead of 3 (Settings → General → Stop after a pause).
+  If you were on the old 3 seconds, you move to 10; any other choice stays.
+- **Longer "Hey Gooby" dictations**: up to 10 minutes instead of one. A short
+  one still ends two seconds after you stop talking, so commands stay quick;
+  past 15 seconds it waits for the same pause as a tapped dictation. Locking
+  the screen ends it without typing anything.
+- **Notices float over the Library** (an update, What's new) instead of
+  pushing it down.
+- **Help pages on heygooby.com**: the privacy policy, license and
+  troubleshooting links in Gooby, and the install help, open as readable pages
+  on heygooby.com instead of files on GitHub.
 - **Updates show how they're going**: as soon as a new version is found, a
   card shows it downloading, with a progress bar and how many MB are in, then
   checking the download, then installing. About and the bottom bar show the
@@ -20,13 +91,32 @@ versions were pre-alpha, for the developers only.
   opens instead of 30, and if it couldn't get through (no internet yet), it
   tries again within minutes instead of six hours.
 - **Gooby's logo** is now the creature with the pixel word "Gooby" under it: in the app, on the app icon, in the installer and on the website. The smallest icons and the tray keep the creature alone, since the word can't be read there.
+- **Windows installer**: run with Gooby already installed, it updates that
+  copy in place with no questions, and for the same version it offers Repair
+  or Uninstall. It won't install over a newer Gooby, and says how to go back
+  if you mean to. It tells you the speech model Gooby downloads when it first
+  starts is about 700 MB, and the uninstaller has its own first and last
+  pages, with Gooby's art.
 - **Setup** links Gooby's license and privacy policy under its start button.
 - **Privacy policy**: it now says what we never do, the EU and UK legal
   reasons, where data goes and how long it's kept, including 30-day backups of
   the download counts, and covers donations and cloud AI providers' training.
+  It also says which dictations the Library keeps, what Gooby reads around
+  the cursor (and never keeps), and when editing by voice copies the
+  selection through the clipboard.
 
 ### Fixed
 
+- **Selected things are readable in every palette**: the small text, icons
+  and borders inside a selected recording, day or model, a primary button or
+  a menu item under the pointer no longer take the same color as their
+  background, and selecting text there shows a highlight again.
+- **No more blink in the Library**: clicking All recordings, Unsorted,
+  Favorites, Notes or Recently Deleted no longer redraws the list and counts
+  when nothing changed, and those views are loaded ahead so they open at once.
+- **Updates**: Restart now no longer waits for the speech model to finish
+  loading before the update installs; on a slow computer that could take
+  minutes.
 - **Colors**: placeholder text, and a few labels in the Game Boy palette,
   are easier to read, and so is warning text in light mode.
 - **Restart to update** no longer freezes Gooby on Windows ("Not
@@ -34,6 +124,17 @@ versions were pre-alpha, for the developers only.
   "Hey Gooby" and its models, and puts them back if the update can't
   install. No dictation starts while an update installs.
 - **Update failed messages** have a proper title instead of a placeholder.
+- The speed test no longer says AI formatting isn't set up when it's only
+  turned off.
+- After switching speech models, Gooby no longer offers to delete a model
+  another app keeps in the shared Hugging Face cache (it never deletes
+  those).
+
+### Security
+
+- **Ollama's cloud models** are no longer listed in Settings → AI formatting.
+  They send your text to Ollama's servers, and the privacy policy says Gooby
+  never offers them.
 
 ### Known issues
 
@@ -943,7 +1044,8 @@ The first Gooby build.
 - Windows scripts to build the installer and run the checks (`build.bat`,
   `check.bat`).
 
-[Unreleased]: https://github.com/gooby-app/gooby-dev/compare/v0.0.8...HEAD
+[Unreleased]: https://github.com/gooby-app/gooby-dev/compare/v0.0.9...HEAD
+[0.0.9]: https://github.com/gooby-app/gooby-dev/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/gooby-app/gooby-dev/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/gooby-app/gooby-dev/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/gooby-app/gooby-dev/compare/v0.0.5...v0.0.6

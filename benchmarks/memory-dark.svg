@@ -2,19 +2,19 @@
 <title>Memory Gooby uses (less is better)</title>
 <text x="0" y="20" font-size="16" font-weight="600" fill="#f0f6fc">Memory Gooby uses (less is better)</text>
 <rect x="0" y="34" width="12" height="12" rx="3" fill="#656c76"/>
-<text x="18" y="45" font-size="13" fill="#9198a1">v0.0.7</text>
+<text x="18" y="45" font-size="13" fill="#9198a1">v0.0.8</text>
 <rect x="87" y="34" width="12" height="12" rx="3" fill="#3987e5"/>
-<text x="105" y="45" font-size="13" fill="#9198a1">v0.0.8 (this release)</text>
+<text x="105" y="45" font-size="13" fill="#9198a1">v0.0.9 (this release)</text>
 <text x="0" y="78" font-size="13" fill="#f0f6fc">Memory while waiting</text>
 <line x1="0.5" y1="84" x2="0.5" y2="120" stroke="#3d444d"/>
-<path d="M0 84H229.28763546755536A4 4 0 0 1 233.28763546755536 88V96A4 4 0 0 1 229.28763546755536 100H0Z" fill="#656c76"/>
-<text x="239.28763546755536" y="97" font-size="12" fill="#f0f6fc">1.3 GB</text>
-<path d="M0 102H251.19716945053872A4 4 0 0 1 255.19716945053872 106V114A4 4 0 0 1 251.19716945053872 118H0Z" fill="#3987e5"/>
-<text x="261.1971694505387" y="115" font-size="12" fill="#f0f6fc">1.4 GB</text>
+<path d="M0 84H554.9328719064023A4 4 0 0 1 558.9328719064023 88V96A4 4 0 0 1 554.9328719064023 100H0Z" fill="#656c76"/>
+<text x="564.9328719064023" y="97" font-size="12" fill="#f0f6fc">1.4 GB</text>
+<path d="M0 102H554.9073071611132A4 4 0 0 1 558.9073071611132 106V114A4 4 0 0 1 554.9073071611132 118H0Z" fill="#3987e5"/>
+<text x="564.9073071611132" y="115" font-size="12" fill="#f0f6fc">1.4 GB</text>
 <text x="0" y="150" font-size="13" fill="#f0f6fc">Memory while dictating (peak)</text>
 <line x1="0.5" y1="156" x2="0.5" y2="192" stroke="#3d444d"/>
 <path d="M0 156H606A4 4 0 0 1 610 160V168A4 4 0 0 1 606 172H0Z" fill="#656c76"/>
-<text x="616" y="169" font-size="12" fill="#f0f6fc">3.3 GB</text>
-<path d="M0 174H277.67727020475763A4 4 0 0 1 281.67727020475763 178V186A4 4 0 0 1 277.67727020475763 190H0Z" fill="#3987e5"/>
-<text x="287.67727020475763" y="187" font-size="12" fill="#f0f6fc">1.5 GB</text>
+<text x="616" y="169" font-size="12" fill="#f0f6fc">1.5 GB</text>
+<path d="M0 174H605.1470671344435A4 4 0 0 1 609.1470671344435 178V186A4 4 0 0 1 605.1470671344435 190H0Z" fill="#3987e5"/>
+<text x="615.1470671344435" y="187" font-size="12" fill="#f0f6fc">1.5 GB</text>
 </svg>

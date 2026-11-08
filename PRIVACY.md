@@ -1,6 +1,6 @@
 # Gooby privacy policy
 
-Effective 2026-11-01
+Effective 2026-11-08
 
 Gooby is built so that what you say stays on your computer. Speech
 recognition runs locally, nothing is sent anywhere unless you turn it on, and
@@ -32,7 +32,7 @@ anything from Gooby's users.
 | **Model downloads** | When you download a speech model (during setup or on the Models page) or a model for the built-in AI formatter | A normal download request to Hugging Face or Handy's model mirror (`blob.handy.computer`). It reveals your IP address and which model you picked. No audio or text. |
 | **Update checks** | Only after you answer **yes** to "Check for updates automatically?", or when you choose Check for updates yourself | A request for `latest.json` from Gooby's releases on GitHub ([gooby-app/gooby-releases](https://github.com/gooby-app/gooby-releases)); when an update is found, its file is downloaded in the background right away, and installed when you restart. It reveals your IP address and that you use Gooby. No audio or text. |
 | **Usage counts** | Only if, on top of that, you answer **yes** to "Help us count Gooby users?" (Settings → About → Count this copy anonymously) | Once a day, while Gooby is running, one small request to `heygooby.com/ping` (Usage counts, below), separate from the update check, which still goes to GitHub. It says Gooby's version, your system (Windows, macOS or Linux, and the processor type), the month you installed Gooby, the date, and whether it's this copy's first request this week, this month and ever. No ID, audio or text. Cloudflare (for heygooby.com) sees your IP address; we don't keep it. Off until you say yes, and only while update checks are on. |
-| **Cloud AI formatting** | Only if you turn on **Allow cloud AI providers** *and* pick a cloud provider | The text of each dictation (not the audio) goes to the provider you chose, under its own privacy policy, with your Names & words list, the active project's words and the common terms you turned on, so names are spelled right. Off by default. An API key is never sent over plain `http://` to another computer. |
+| **Cloud AI formatting** | Only if you turn on **Allow cloud AI providers** *and* pick a cloud provider | The text of each dictation (not the audio) goes to the provider you chose, under its own privacy policy, with your Names & words list, the active project's words and the common terms you turned on, so names are spelled right. Never the text already in the box you're dictating into (below). Off by default. An API key is never sent over plain `http://` to another computer. |
 | **Cloud summaries** | Only if, on top of that, you turn on **Also with cloud providers** under AI formatting → Summaries | The text of every recording (not the audio), including notes and short dictations the formatter skips, plus the names of your projects, so it can write a title, summary, action items and suggested tags and project. Off by default. |
 | **Cloud calendars** | Only if you turn on **Allow cloud calendars** (Settings → Calendar) *and* connect iCloud, a CalDAV server, Google Calendar or Outlook | Each reminder's title and time (details below) |
 | **Links you click** | When you click a link in the app | It opens in your browser. Gooby itself sends nothing. |
@@ -118,9 +118,21 @@ Everything is kept in Gooby's data folder:
   newest copy is kept, and Gooby deletes it a week after the update, so
   dictations you delete don't stay in it; it's also removed with everything
   else.
-- `recordings/`: the audio of each dictation, as Opus files (`.opus`, about
-  10 MB per hour of speech; recordings from older versions are converted from
-  `.wav` in the background). Every recording is kept until
+- `recordings/`: the audio of each recording in the Library, as Opus files
+  (`.opus`, about 10 MB per hour of speech; recordings from older versions
+  are converted from `.wav` in the background). Kept: notes to self,
+  reminders you ask for ("Gooby, remind me …", or "remind me" anywhere in a
+  dictation, which keeps that dictation as the reminder's note), dictations
+  Gooby couldn't type (typing off, no text box, Gooby's own window in front,
+  or typing failed), and the audio of one that couldn't be transcribed, so
+  you can try again. Voice commands are never kept. Any other dictation typed
+  into another app is kept only if you turn on Settings → Storage → Keep
+  dictations typed into other apps (off by default); otherwise its text
+  isn't stored, and its audio is written only while it's transcribed and
+  deleted once it's typed (or at the next start, if Gooby quit first). Until
+  Gooby quits, the last one stays in memory for Copy Last Transcript and
+  "Gooby, type that". If you turned on saving dictations as files, those
+  files are still written. Every recording is kept until
   you delete it, unless you turn on Auto-delete recordings (General →
   Advanced settings → Library); even then, notes to self and recordings you
   starred, filed in a project or tagged are kept.
@@ -217,10 +229,21 @@ through the clipboard, depending on your paste setting. When pasting, it saves
 what was on your clipboard, pastes, then puts the saved content back. That
 saved copy stays in memory and is never stored or sent anywhere.
 
-To edit selected text by voice ("Gooby, make this shorter"), Gooby copies the
-selection through the clipboard, sends it with your instruction to your AI
-formatter (on your computer unless you chose a cloud provider), pastes the
-result over it, and puts your clipboard back as it was. Nothing of it is kept.
+To edit selected text by voice ("Gooby, make this shorter", the Edit with
+voice shortcut, or a short instruction like "fix the grammar" said while text
+is selected), Gooby reads the selection through your system's accessibility
+service (below) or, where an app doesn't say, copies it through the clipboard
+and puts your clipboard back as it was. That copy is made by the app you're
+in, so a clipboard history (Windows' Win+V, a clipboard manager) may keep
+it. It sends the selection with your
+instruction to your AI formatter (on your computer unless you chose a cloud
+provider) and pastes the result over it. Without "Gooby," or the shortcut, it
+looks for a selection only after a short dictation that reads like such an
+instruction; other dictations never read it. Nothing of it is kept: the
+selection, the result and the recording of the instruction aren't stored or
+logged, and the instruction isn't added to your Library. (Like any
+dictation, the instruction shows in Developer mode's Logs panel until Gooby
+quits; the selection never does.)
 
 Just before typing, Gooby asks your system which app is in front, so AI
 formatting can fit it (an email, a chat, a terminal) and the Library can show
@@ -234,8 +257,38 @@ With "Don't type when there's nowhere to type; keep a note instead" on (off
 by default),
 Gooby also asks your system's accessibility service (AT-SPI on Linux, UI
 Automation on Windows) what kind of element has focus, such as a text box or a
-button, just before typing. It doesn't read the element's text, and nothing
-of the answer is kept.
+button, just before typing. That question doesn't read the element's text,
+and nothing of the answer is kept.
+
+With "Match the text that's already there" on (Settings → AI formatting →
+Advanced; on by default), Gooby reads the text around the cursor in the box
+you're dictating into, so the dictation fits it: no capital in the middle of
+a sentence, the next item of a list, no second greeting in an email. It reads
+it once, when you stop recording, through the same accessibility service
+(the Accessibility API on macOS, the permission Gooby already has to type).
+It keeps at most 2,000 characters before the cursor and 500 after it, and
+never text you selected (the dictation replaces it; only voice editing,
+above, reads that); some apps hand over a
+little more, or on a Mac the box's whole text, which is cut down to that at
+once. It's held in memory for that one dictation and then dropped: never
+stored, never logged and never sent anywhere. If you move to another box or
+window before the dictation is typed, it isn't used. Gooby never reads
+fields the app marks as passwords, the terminals and code editors it
+recognizes, its own window or text you can't edit, and on macOS nothing at
+all while Secure Input is on. It reads nothing when the dictation won't be
+formatted ("Type exactly as said", or typing off).
+
+If the AI formats the dictation, it's shown the last 300 characters before
+the cursor, only when it runs on your computer: Gooby's built-in formatter,
+or Ollama at a `localhost` address with one of its local models. A cloud
+provider, even one you allowed, an Ollama cloud model and any other server
+never get any of it. (Anything that answers at `localhost:11434`, such as a
+tunnel you set up to another computer, counts as Ollama on yours.) The
+formatter may keep it in its memory until it unloads, as it does with the
+dictation. An answer that repeats part of the box, a number or code from it,
+or adds a link isn't used: the dictation is typed with Gooby's own
+formatting instead, so the box's text is never typed again or kept with the
+recording. Turn the setting off and Gooby reads nothing from the box.
 
 ## The speed test
 
