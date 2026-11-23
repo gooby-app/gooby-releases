@@ -317,7 +317,7 @@ pixel-perfect so it's sharp, or in your system's font if you prefer.
 <!-- bench:start -->
 ## How fast is Gooby?
 
-On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.9 types your words **560 ms** after you stop talking (a 20-word sentence, with the settings a fresh install gets).
+On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.12 types your words **630 ms** after you stop talking (a 20-word sentence, with the settings a fresh install gets).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="benchmarks/speed-dark.svg">
@@ -329,17 +329,17 @@ On an ordinary laptop (4 cores, 8 GB of memory, no graphics card), Gooby v0.0.9 
   <img src="benchmarks/memory-light.svg" alt="Memory Gooby uses while waiting and at its peak while dictating, for this release and the one before." width="100%">
 </picture>
 
-| | v0.0.8 | v0.0.9 | Change |
+| | v0.0.9 | v0.0.12 | Change |
 |---|---:|---:|---|
-| Stop talking → text typed (20 words) | 550 ms | 560 ms | about the same |
-| Stop talking → text typed (31 words) | 610 ms | 600 ms | about the same |
-| First dictation after starting Gooby | 590 ms | 640 ms | 8% slower |
-| Start-up, until the window is drawn | 370 ms | 350 ms | about the same |
+| Stop talking → text typed (20 words) | 610 ms | 630 ms | about the same |
+| Stop talking → text typed (31 words) | 640 ms | 560 ms | 13% faster |
+| First dictation after starting Gooby | 530 ms | 720 ms | 38% slower |
+| Start-up, until the window is drawn | 350 ms | 340 ms | about the same |
 | Memory while waiting | 1.4 GB | 1.4 GB | about the same |
 | Memory while dictating (peak) | 1.5 GB | 1.5 GB | about the same |
 | Words heard right | 100% | 100% | about the same |
 
-Measured on 2026-11-08 by Gooby's own benchmark on a Linux PC held to those limits; every release is measured the same way, next to the one before. How, and what it can't show: [BENCHMARKS.md](BENCHMARKS.md).
+Measured on 2026-11-23 by Gooby's own benchmark on a Linux PC held to those limits; every release is measured the same way, next to the one before. How, and what it can't show: [BENCHMARKS.md](BENCHMARKS.md).
 <!-- bench:end -->
 
 ## Privacy in short

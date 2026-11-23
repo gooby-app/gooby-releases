@@ -2,25 +2,25 @@
 <title>Time until your words are typed (shorter is faster)</title>
 <text x="0" y="20" font-size="16" font-weight="600" fill="#f0f6fc">Time until your words are typed (shorter is faster)</text>
 <rect x="0" y="34" width="12" height="12" rx="3" fill="#656c76"/>
-<text x="18" y="45" font-size="13" fill="#9198a1">v0.0.8</text>
+<text x="18" y="45" font-size="13" fill="#9198a1">v0.0.9</text>
 <rect x="87" y="34" width="12" height="12" rx="3" fill="#3987e5"/>
-<text x="105" y="45" font-size="13" fill="#9198a1">v0.0.9 (this release)</text>
+<text x="105" y="45" font-size="13" fill="#9198a1">v0.0.12 (this release)</text>
 <text x="0" y="78" font-size="13" fill="#f0f6fc">Stop talking → text typed (20 words)</text>
 <line x1="0.5" y1="84" x2="0.5" y2="120" stroke="#3d444d"/>
-<path d="M0 84H528.110755064853A4 4 0 0 1 532.110755064853 88V96A4 4 0 0 1 528.110755064853 100H0Z" fill="#656c76"/>
-<text x="538.110755064853" y="97" font-size="12" fill="#f0f6fc">550 ms</text>
-<path d="M0 102H534.1464205758957A4 4 0 0 1 538.1464205758957 106V114A4 4 0 0 1 534.1464205758957 118H0Z" fill="#3987e5"/>
-<text x="544.1464205758957" y="115" font-size="12" fill="#f0f6fc">560 ms</text>
+<path d="M0 84H513.6668864200518A4 4 0 0 1 517.6668864200518 88V96A4 4 0 0 1 513.6668864200518 100H0Z" fill="#656c76"/>
+<text x="523.6668864200518" y="97" font-size="12" fill="#f0f6fc">610 ms</text>
+<path d="M0 102H528.4376575077602A4 4 0 0 1 532.4376575077602 106V114A4 4 0 0 1 528.4376575077602 118H0Z" fill="#3987e5"/>
+<text x="538.4376575077602" y="115" font-size="12" fill="#f0f6fc">630 ms</text>
 <text x="0" y="150" font-size="13" fill="#f0f6fc">Stop talking → text typed (31 words)</text>
 <line x1="0.5" y1="156" x2="0.5" y2="192" stroke="#3d444d"/>
-<path d="M0 156H577.6549451917616A4 4 0 0 1 581.6549451917616 160V168A4 4 0 0 1 577.6549451917616 172H0Z" fill="#656c76"/>
-<text x="587.6549451917616" y="169" font-size="12" fill="#f0f6fc">610 ms</text>
-<path d="M0 174H575.600629585766A4 4 0 0 1 579.600629585766 178V186A4 4 0 0 1 575.600629585766 190H0Z" fill="#3987e5"/>
-<text x="585.600629585766" y="187" font-size="12" fill="#f0f6fc">600 ms</text>
+<path d="M0 156H540.0768837235393A4 4 0 0 1 544.0768837235393 160V168A4 4 0 0 1 540.0768837235393 172H0Z" fill="#656c76"/>
+<text x="550.0768837235393" y="169" font-size="12" fill="#f0f6fc">640 ms</text>
+<path d="M0 174H470.1104313136071A4 4 0 0 1 474.1104313136071 178V186A4 4 0 0 1 470.1104313136071 190H0Z" fill="#3987e5"/>
+<text x="480.1104313136071" y="187" font-size="12" fill="#f0f6fc">560 ms</text>
 <text x="0" y="222" font-size="13" fill="#f0f6fc">First dictation after starting Gooby</text>
 <line x1="0.5" y1="228" x2="0.5" y2="264" stroke="#3d444d"/>
-<path d="M0 228H559.5840468561828A4 4 0 0 1 563.5840468561828 232V240A4 4 0 0 1 559.5840468561828 244H0Z" fill="#656c76"/>
-<text x="569.5840468561828" y="241" font-size="12" fill="#f0f6fc">590 ms</text>
+<path d="M0 228H439.3820248714426A4 4 0 0 1 443.3820248714426 232V240A4 4 0 0 1 439.3820248714426 244H0Z" fill="#656c76"/>
+<text x="449.3820248714426" y="241" font-size="12" fill="#f0f6fc">530 ms</text>
 <path d="M0 246H606A4 4 0 0 1 610 250V258A4 4 0 0 1 606 262H0Z" fill="#3987e5"/>
-<text x="616" y="259" font-size="12" fill="#f0f6fc">640 ms</text>
+<text x="616" y="259" font-size="12" fill="#f0f6fc">720 ms</text>
 </svg>

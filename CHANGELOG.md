@@ -5,6 +5,81 @@ versions were pre-alpha, for the developers only.
 
 ## Coming in the next version
 
+## 0.0.12 - 2026-11-23
+
+### Added
+
+- **Notes as Markdown files**: pick a folder in Settings → General and every
+  note to self is also kept there as a `.md` file (in a folder per project,
+  with its date and tags), so it opens in Obsidian or any editor and is
+  still yours without Gooby. A file follows its note when you rename, move
+  or delete it. One way only: Gooby writes the files and doesn't read
+  changes back, so edit notes in Gooby. Off until you pick a folder.
+
+### Changed
+
+- **"Hey Gooby" setup on first run, and when your microphone changes**: the
+  first-run tickbox says you'll say it five times, and Gooby asks the first
+  time the app opens, with a microphone picker in the same window. The setup
+  is kept for each microphone you've said it on, however it's reached (as
+  the system default or chosen by name), so a microphone is only set up the
+  first time it listens while "Hey Gooby" is on, even after being unplugged
+  and plugged back in. A microphone with no setup (one you pick, or the system default
+  becoming a different device because one was unplugged) asks again, since
+  the phrase may not work as well on it; if you say Not now, a notice and a
+  hint in Settings remind you. Switching microphones also keeps "Hey Gooby"
+  listening on the new one.
+- **Library search finds more, faster**: words can be in any order and
+  anywhere in the recording ("mic call" finds "Call about the microphone"),
+  capital letters don't matter in any language, and a big Library is
+  searched from an index instead of being read through each time.
+- **`#tags` in a typed note**: write `#idea` or `#work/acme` in a note and
+  it's tagged with it.
+- **Panels float instead of pushing the page down**: the calendar code under a
+  reminder or a day, the test code in Settings → Calendar, the command line's
+  answers and suggestions, the Library's Undo bar, and update and setup
+  notices on Settings pages now open over the app.
+- **REMIND asks where a reminder goes**: the popup lists each connected
+  calendar (iCloud, CalDAV, Google…) with a tick, set from Settings → Calendar,
+  so you can add one reminder to Apple only; "Remember this choice" saves it.
+  With no calendar Gooby can add to by itself, the popup shows the reminder's
+  QR code to scan with your phone's camera, with a link to connect iCloud.
+  Nothing is sent or saved for the code.
+
+- **"Hey Gooby" learns how you say it**: turning it on now asks you to say
+  "Hey Gooby" five times, with a pause between each (Settings → General has a
+  button to do it again). Gooby then wakes only for something that sounds like
+  your takes at about the same loudness, so a video on your speakers or
+  someone else's voice wakes it less. Skipping it keeps the old behavior. Only
+  a few numbers are kept, never audio.
+
+### Fixed
+
+- **Windows installer:** it closes a running Gooby through Windows' Restart
+  Manager, and says so when Gooby runs with more rights than the installer
+  has.
+- **Opening Gooby twice in a row no longer crashes the second one** while
+  the first is still updating its Library after an update; it waits.
+- **Updates no longer hang on "Restart to Update"** (Linux and macOS): if
+  Gooby doesn't close within a few seconds of installing an update, it ends
+  itself and opens the new version, and Quit works again after a minute even
+  if an install is stuck. While it installs, the whole window says what's
+  happening.
+- **Release notes open on heygooby.com**: "Release notes" in What's new, and
+  the download link for portable copies, go to the website, not GitHub.
+- **Search boxes follow your theme**: the search box in Settings (and in
+  Common terms) is drawn in the palette's colors, with its own clear button,
+  not the system's.
+- **The app menu icon updates** (Linux AppImage): a Gooby installed before
+  the new logo kept the old icon in the app menu and dock; it's now replaced.
+
+### Security
+
+- **Updates:** Gooby moves to Tauri 2.12 and a newer updater, which unpacks Windows updates with a fixed version of its zip library.
+
+- **The Library's database engine is updated** (SQLite, built into Gooby)
+  for a security fix in SQLite itself.
+
 ## 0.0.9 - 2026-11-08
 
 Dictations that fit the text already in the box, editing selected text
@@ -40,16 +115,15 @@ updates or repairs the copy you have.
   its own inside a dictation, such as "Make a calendar appointment for Friday
   at 3." ("I'll create a calendar event …" in an email isn't asking.)
 - **Command line**: Ctrl+` (or Ctrl+J) opens a command line at the bottom,
-  like a terminal. Commands are in capitals and suggested from the first
-  letter you type (`RE` shows `REMIND`; Tab takes it), and `HELP` lists them
-  all. `REMIND buy baby wipes tomorrow` adds a reminder, `NOTE …` keeps a
-  note, `GO calendar` opens a page, `FORMAT`, `SOUNDS` and `WAKE` take `ON` or
-  `OFF`, `PROJECT` sets the project, `MODEL SPEECH` and `MODEL FORMAT` switch
-  models (completed from the ones you've downloaded; add `DOWNLOAD` to open
-  the page), `OPEN`, `SEARCH` and `UPDATE` work the Library and updates. If
-  something isn't set up (no calendar for a reminder, no downloaded model),
-  it says so and tells you what to type to set it up. It shows nothing until
-  you type (`HELP` lists everything), and Settings → General → Command line
+like a terminal. Commands are in capitals and suggested from the first
+letter you type (`RE`shows`REMIND`; Tab takes it), and `HELP`lists them
+all.`REMIND buy baby wipes tomorrow`adds a reminder,`NOTE …`keeps a
+note,`GO calendar`opens a page,`FORMAT`, `SOUNDS`and`WAKE`take`ON`or`OFF`, `PROJECT`sets the project,`MODEL SPEECH`and`MODEL FORMAT`switch
+models (completed from the ones you've downloaded; add`DOWNLOAD`to open
+the page),`OPEN`, `SEARCH`and`UPDATE` work the Library and updates. If
+something isn't set up (no calendar for a reminder, no downloaded model),
+it says so and tells you what to type to set it up. It shows nothing until
+you type (`HELP` lists everything), and Settings → General → Command line
   turns it off.
 - **Inky is recommended in setup, not forced**: you can pick typing exactly
   as said instead. If you updated and aren't using Inky, a card tells you
@@ -107,6 +181,9 @@ updates or repairs the copy you have.
 
 ### Fixed
 
+- **Updating on Windows no longer waits on a stuck model**: a speech model,
+  formatter or Ollama that won't stop can hold the installer up for at most
+  a few seconds.
 - **Selected things are readable in every palette**: the small text, icons
   and borders inside a selected recording, day or model, a primary button or
   a menu item under the pointer no longer take the same color as their
@@ -234,6 +311,7 @@ cleanly and keeps your recordings and settings.
   Back and Skip. Help → Take the tour again shows it any time.
 
 ### Changed
+
 - **Simpler setup**: the first screen no longer asks you to pick an AI
   formatter or install Ollama. Gooby's own formatting (Inky) tidies your
   words from the first dictation; AI models are one click each in Settings →
@@ -1044,7 +1122,10 @@ The first Gooby build.
 - Windows scripts to build the installer and run the checks (`build.bat`,
   `check.bat`).
 
-[Unreleased]: https://github.com/gooby-app/gooby-dev/compare/v0.0.9...HEAD
+[Unreleased]: https://github.com/gooby-app/gooby-dev/compare/v0.0.12...HEAD
+[0.0.12]: https://github.com/gooby-app/gooby-dev/compare/v0.0.11...v0.0.12
+[0.0.11]: https://github.com/gooby-app/gooby-dev/compare/v0.0.10...v0.0.11
+[0.0.10]: https://github.com/gooby-app/gooby-dev/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/gooby-app/gooby-dev/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/gooby-app/gooby-dev/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/gooby-app/gooby-dev/compare/v0.0.6...v0.0.7

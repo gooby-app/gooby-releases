@@ -105,7 +105,9 @@ Everything is kept in Gooby's data folder:
 | Windows | `%APPDATA%\com.gooby.dictation` |
 | macOS | `~/Library/Application Support/com.gooby.dictation` |
 
-- `history.db`: your dictations' text, titles, notes, tags and projects,
+- `history.db`: your dictations' text, titles, notes, tags and projects
+  (with a search index of that text, so the Library's search is fast; it
+  follows your edits and deletions),
   the name of the app each was typed into ("Slack"), what formatted each
   (Inky, the rules, "as said", or the AI model's name), and the AI's summary,
   action items and suggested tags and project for each (Summaries, written
@@ -182,6 +184,17 @@ files, each one is also written to the folder you pick. Gooby warns you when
 that folder looks cloud-synced (OneDrive, Dropbox, Google Drive, iCloud),
 since the sync service would upload them.
 
+**Notes as Markdown files** are off by default too. If you pick a folder for
+them (Settings → General), each note to self is also written there as a
+`.md` file with its text, date, tags, project, your own notes, and its
+summary and action items if it has them. Dictations typed into other apps
+aren't written. Gooby adds one file of its own, `.gooby-notes.json`, which
+lists the files it wrote; it changes and removes only those, and never reads
+a note back from the folder. Gooby says so when the folder looks
+cloud-synced, since that service will upload the notes. Changing the folder,
+stopping, or removing Gooby or its data leaves the files already written
+where they are: they're yours, and Gooby no longer updates or removes them.
+
 These files are not encrypted. Anyone who can log in as you can read them;
 other accounts on the computer can't (on Linux, Gooby makes its data folder
 private to your account).
@@ -221,6 +234,10 @@ model on your computer, and only the last 1.44 seconds are ever held, in
 memory; nothing is written to disk or sent anywhere. When it hears "Hey
 Gooby", a normal dictation starts and is kept in your Library like any other.
 Your system may show that the microphone is in use for as long as it's on.
+If you do its setup (you say "Hey Gooby" five times), Gooby keeps a few
+numbers in its settings file that describe how you say it and how loud: no
+audio, and nothing that leaves your computer. "Set up for my voice" in
+Settings replaces them.
 
 ## Clipboard and typing
 

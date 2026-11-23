@@ -31,14 +31,14 @@ them. The two releases take turns, so a busy moment hits both alike.
 
 ## Results
 
-Measured 2026-11-08.
+Measured 2026-11-23.
 
-|                                      |                 v0.0.8 |                 v0.0.9 |
+|                                      |                 v0.0.9 |                v0.0.12 |
 | ------------------------------------ | ---------------------: | ---------------------: |
-| Stop talking → text typed (20 words) | 550 ms (520 ms–820 ms) | 560 ms (540 ms–830 ms) |
-| Stop talking → text typed (31 words) | 610 ms (590 ms–830 ms) | 600 ms (590 ms–810 ms) |
-| First dictation after starting Gooby | 590 ms (550 ms–800 ms) | 640 ms (560 ms–800 ms) |
-| Start-up, until the window is drawn  | 370 ms (370 ms–370 ms) | 350 ms (340 ms–350 ms) |
+| Stop talking → text typed (20 words) | 610 ms (480 ms–780 ms) | 630 ms (470 ms–740 ms) |
+| Stop talking → text typed (31 words) | 640 ms (570 ms–770 ms) | 560 ms (550 ms–780 ms) |
+| First dictation after starting Gooby | 530 ms (520 ms–530 ms) | 720 ms (560 ms–750 ms) |
+| Start-up, until the window is drawn  | 350 ms (350 ms–350 ms) | 340 ms (340 ms–350 ms) |
 | Memory while waiting                 |                 1.4 GB |                 1.4 GB |
 | Memory while dictating (peak)        | 1.5 GB (1.5 GB–1.5 GB) | 1.5 GB (1.5 GB–1.5 GB) |
 | Words heard right                    |                   100% |                   100% |

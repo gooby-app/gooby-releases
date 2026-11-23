@@ -112,7 +112,10 @@ runs on Linux, Windows and macOS.
 - **"Hey Gooby"** (off by default): start a dictation or a command by voice;
   a short one stops two seconds after you stop talking, and one that has run
   15 seconds waits for the pause above (5 seconds if that's Never), up to 10
-  minutes; "Gooby, done" ends it at once, and locking the screen drops it. Setup offers it, and Settings → General and the
+  minutes; "Gooby, done" ends it at once, and locking the screen drops it.
+  Turning it on asks you to say it five times, so it learns how you say it
+  and how loud (videos and other voices wake it less); Settings can redo
+  that. Setup offers it, and Settings → General and the
   tray menu turn it on or off; the tray icon shows a blue dot while it
   listens. It runs on your computer and keeps nothing until it hears its
   name.
@@ -210,9 +213,13 @@ typed into other apps (off by default).
 - **Typed notes**: the pen button (or Ctrl/Cmd+N) writes a note without
   dictating. Saved, it's read like a dictation: "remind me to …" adds a
   reminder, "put it in the Acme project" files it, a template's name formats
-  it, and it's tidied up like your dictations. What Gooby understands is
+  it, `#idea` tags it, and it's tidied up like your dictations. What Gooby understands is
   suggested as you type (Tab or Enter takes it); a snippet's name inserts its
   text.
+- **Notes as Markdown files** (Settings → General, off until you pick a
+  folder): every note to self is also a `.md` file there, in a folder per
+  project, with its date, tags and summary, for Obsidian or any editor.
+  Gooby writes them and doesn't read changes back.
 - **Say where it goes**: start with "For the Acme project: …" or end with
   "…put it in Acme" and it's filed there, with the command cut from the text.
 - **Summaries**: after each recording, while Gooby is idle, the AI formatter
@@ -223,7 +230,7 @@ typed into other apps (off by default).
   summarize older recordings. On for formatters on your computer; with a
   cloud provider only if you turn it on. It never slows a dictation down.
 - **List or calendar**: recordings grouped by day, with search across titles,
-  transcripts, notes and summaries; the calendar marks the days you recorded
+  transcripts, notes and summaries (any part of a word, words in any order); the calendar marks the days you recorded
   and the days with reminders. Pick a day for its reminders (tick them off,
   or right-click to edit or delete) above its recordings. A note's "Add to
   calendar" makes it a reminder later.
@@ -243,13 +250,14 @@ typed into other apps (off by default).
 ## Around the app
 
 - **Command line**: Ctrl+` (or Ctrl+J) opens a terminal-style line at the
-  bottom. Commands are in capitals and suggested as you type (`RE` →
-  `REMIND`, Tab to take it), with every choice completed from what you have:
-  pages, projects, downloaded models. `REMIND`, `NOTE`, `GO`, `FORMAT`,
-  `SOUNDS`, `WAKE`, `PROJECT`, `MODEL SPEECH|FORMAT`, `OPEN`, `SEARCH`,
-  `UPDATE`, `HELP` and `CLEAR`; the arrows walk your history. When a command
-  needs something that isn't set up, it says what to type to fix it. Nothing
-  is shown until you type (`HELP` lists everything); Settings → General →
+bottom. Commands are in capitals and suggested as you type (`RE`→`REMIND`, Tab to take it), with every choice completed from what you have:
+pages, projects, downloaded models. `REMIND`, `NOTE`, `GO`, `FORMAT`,
+`SOUNDS`, `WAKE`, `PROJECT`, `MODEL SPEECH|FORMAT`, `OPEN`, `SEARCH`,
+`UPDATE`, `HELP`and`CLEAR`; the arrows walk your history. `REMIND` asks
+which connected calendars get the reminder, or shows a QR code for your
+phone when none can be added to by itself. When a command
+needs something that isn't set up, it says what to type to fix it. Nothing
+is shown until you type (`HELP` lists everything); Settings → General →
   Command line turns it off.
 - **Command menu**: Ctrl+K (Cmd+K on a Mac) finds any Settings page or
   setting, the Library, and the common actions (formatting on or off,
